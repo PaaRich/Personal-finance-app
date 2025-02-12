@@ -12,15 +12,15 @@ function App() {
     <>
       <Routes>
         {/* login */}
-        <Route path="/" element={<h1>Login Page</h1>} />
+        <Route path="" element={<h1>Login Page</h1>} />
         
         {/* pages */}
-        <Route path="personal-finance-app" element={<Layout/>}>
+        <Route path="/" element={<Layout/>}>
           <Route index element={<Overview />} />
           <Route path="transactions" element={<Transaction/> } />
           <Route path="budgets" element={<Budget/> } />
           <Route path="pots" element={<Pots/> } />
-          <Route path="recurring_bills" element={<RecurringBills/> } />
+          <Route path="recurring-bills" element={<RecurringBills/> } />
         </Route>
 
       </Routes>
