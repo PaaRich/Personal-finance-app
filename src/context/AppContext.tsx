@@ -1,0 +1,23 @@
+import { Context } from "./Context";
+import { useState } from "react";
+import {ContextProps} from '../../types'
+
+  const data = [
+  { name: "Entertainment", value: 50, color: "#0088A9" },
+  { name: "Bills", value: 750, color: "#6EC1E4" },
+  { name: "Dining Out", value: 75, color: "#E9BFA5" },
+  { name: "Personal Care", value: 100, color: "#5B5A71" },
+];
+export const AppContext = ({children}:ContextProps) => {
+    const [open, setOpen] = useState<boolean>(true);
+  
+  return (
+      <Context.Provider value={{
+          open,
+          setOpen,
+          data
+      }}>
+          {children}
+      </Context.Provider>
+  )
+}
