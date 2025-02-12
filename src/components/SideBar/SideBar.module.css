@@ -1,3 +1,36 @@
-.sidebar_container{
-    
+
+.sidebar_container li a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: large;
+    width: inherit;
+    transition-duration: 0.5s;
+    display: inline-flex;
+    padding: 0.8rem 0;
+    padding-left: 24px;
+    border-top-right-radius:10px ;
+    border-bottom-right-radius:10px;
 }
+.sidebar_container ul li{
+    margin-bottom: 5px;
+    width: 95%;
+    position: relative;
+}
+/* .sidebar{
+    transition-duration: 0.5s;
+animation: sidebarWidth 0.5s linear 0 forwards alternate;
+}
+@keyframes sidebarWidth {
+    from{
+        width: 350px;
+        
+    }
+    to{
+        width: fit-content;
+    }
+} */
+
+
+
+
+

@@ -1,0 +1,12 @@
+.singleRecurringCard::before{
+    content: " ";
+    width: 20px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -10px;
+    background-color: green;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    z-index:-1;
+}

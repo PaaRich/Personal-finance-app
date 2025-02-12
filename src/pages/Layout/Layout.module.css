@@ -1,5 +1,7 @@
 .layout_container{
 display: flex;
+background-color:var(--light-beige);
+height: 100dvh;
 }
 
 
