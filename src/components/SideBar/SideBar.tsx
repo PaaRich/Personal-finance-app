@@ -24,11 +24,11 @@ const SideBar = () => {
                 {/* taps */}
               <div >
                 <ul>
-                  <li><NavLink to={'/'}><AiFillHome size={28}/> <p className={`${open?"block":"hidden"} ml-3`}>Overview</p></NavLink></li>
-                  <li><NavLink to='transactions'> <LuArrowDownUp size={28}/> <p className={`${open?"block":"hidden"} ml-3`}>Transactions</p></NavLink></li>
-                  <li><NavLink to='budgets'><FaBalanceScaleRight size={28}/><p className={`${open?"block":"hidden"} ml-3`}>Budgets</p></NavLink></li>
-                  <li><NavLink to='pots'><FaSackDollar size={28}/><p className={`${open?"block":"hidden"} ml-3`}>Pots</p></NavLink></li>
-                  <li><NavLink to='recurring-bills'><FaMoneyCheckDollar size={28}/><p className={`${open?"block":"hidden"} ml-3`}>Recurring Bills</p></NavLink></li>
+                  <li><NavLink to={'/'}><AiFillHome size={28} className="mr-4"/> <p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Overview</p></NavLink></li>
+                  <li><NavLink to='transactions'> <LuArrowDownUp size={28} className="mr-4"/> <p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Transactions</p></NavLink></li>
+                  <li><NavLink to='budgets'><FaBalanceScaleRight size={28} className="mr-4"/><p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Budgets</p></NavLink></li>
+                  <li><NavLink to='pots'><FaSackDollar size={28} className="mr-4"/><p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Pots</p></NavLink></li>
+                  <li><NavLink to='recurring-bills'><FaMoneyCheckDollar size={28} className="mr-4"/><p className={`${open?"w-40":"w-0"} overflow-hidden duration-200 text-nowrap`}>Recurring Bills</p></NavLink></li>
                 </ul>
               </div>
 
