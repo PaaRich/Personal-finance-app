@@ -1,4 +1,5 @@
 .layout_container{
+    position: relative;
 display: flex;
 background-color:var(--light-beige);
 height: 100dvh;
