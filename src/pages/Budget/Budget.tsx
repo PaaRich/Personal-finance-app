@@ -6,11 +6,11 @@ import { Context } from "../../context/Context";
 import BudgetCard from "./BudgetCard";
 
 const Budget = () => {
-  const { data } = useContext(Context);
+  const { data,openPopUp,setOpenPopUp } = useContext(Context);
   return (
-    <div>
+    <div className="relative">
       <Navbar title="Budgets">
-        <Button title="Add New Budget" onclick={()=>console.log("Add Budget")}/>
+        <Button title="Add New Budget" onclick={()=>{setOpenPopUp(!openPopUp)}}/>
       </Navbar>
 
       {/* body */}

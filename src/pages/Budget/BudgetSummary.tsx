@@ -22,7 +22,7 @@ const BudgetSummary = () => {
         <div className="flex flex-col gap-2 basis-[50%]">
           <div className="mx-auto">
                 {data.map((item, index) => (
-              <div key={index} className="flex items-center gap-2">
+              <div key={index} className="flex items-center gap-3 mb-3">
                 <div className="w-2 h-10 rounded" style={{ background: item.color }}></div>
                 <div>
                   <p className="text-gray-700 text-sm">{item.name}</p>
