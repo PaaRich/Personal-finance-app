@@ -9,12 +9,15 @@ import {ContextProps} from '../../types'
   { name: "Personal Care", value: 100, color: "#5B5A71" },
 ];
 export const AppContext = ({children}:ContextProps) => {
-    const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(true);
+  const [openPopUp,setOpenPopUp]=useState<boolean>(false)
   
   return (
       <Context.Provider value={{
           open,
           setOpen,
+          openPopUp,
+          setOpenPopUp,
           data
       }}>
           {children}
