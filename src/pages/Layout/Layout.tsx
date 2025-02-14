@@ -7,9 +7,12 @@ import DeletePopUp from "../../components/DeletePopUp";
 import AddBudget from "../../components/AddBudget";
 import AddPot from "../../components/AddPot";
 import EditPot from "../../components/EditPot";
+import AddMoney from "../Pots/AddMoney";
+import Withdraw from "../Pots/Withdraw";
+
 
 const Layout = () => {
-  const { open, openPopUp,openPot,openEditPopUp,openDelBudget,setOpenDelBudget,openEditPot,openDelPot,setOpenDelPot } = useContext(Context);
+  const { open, openPopUp,openPot,openEditPopUp,openDelBudget,setOpenDelBudget,openEditPot,openDelPot,setOpenDelPot,openAddMoney,openWithdraw } = useContext(Context);
 
   //const [toggleColorDropdown, setToggleColorDropdown] = useState(false);
 
@@ -36,7 +39,11 @@ const Layout = () => {
       
       {openEditPot && <EditPot />}
       
-      {openDelPot&& <DeletePopUp label="Savings" type="pot" setClose={setOpenDelPot}/>}
+      {openDelPot && <DeletePopUp label="Savings" type="pot" setClose={setOpenDelPot} />}
+      
+      {openAddMoney && <AddMoney amount={455} target={2000} potName="Entertainment" />}
+      
+      {openWithdraw && <Withdraw amount={50} target={100} potName="Savings"/>}
         
           {/* pages */}
       <div className={` transition-all duration-300 ease-in-out w-full grow overflow-y-auto`}>
