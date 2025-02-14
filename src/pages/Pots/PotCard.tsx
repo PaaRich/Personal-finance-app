@@ -2,9 +2,12 @@ import { useState,useMemo} from "react";
 import { BsThreeDots } from "react-icons/bs";
 import Detail from "../../components/Detail";
 import PotButton from "./PotButton";
+import { useContext } from "react";
+import { Context } from "../../context/Context";
 
 const PotCard = ({ color, label, target, amountSaved }: { color: string; label: string; target: number;amountSaved:number }) => {
     const [openDetail, setOpenDetail] = useState(false);
+    const { setOpenEditPot,setOpenDelPot} = useContext(Context);
     const percent = useMemo(() => Math.floor((amountSaved/target)*100),[amountSaved,target])
   return (
       <div className="bg-white p-5 rounded-2xl">
@@ -19,7 +22,7 @@ const PotCard = ({ color, label, target, amountSaved }: { color: string; label: 
                   <BsThreeDots />
               </div>
               
-              {openDetail&&<Detail setState={setOpenDetail} name="Budget" editFn={()=>console.log('edit')} delFn={()=>console.log("delete")}/>}
+              {openDetail&&<Detail setState={setOpenDetail} name="Pot" editFn={()=>{setOpenEditPot(true)}} delFn={()=>{setOpenDelPot(true)}}/>}
           </div>
 
           {/* body */}
