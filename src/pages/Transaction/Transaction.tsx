@@ -4,13 +4,16 @@ import profilePic from "../../assets/Person 1.jpg"
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { useState } from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const Transaction = () => {
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState<string>("latest")
   const [category, setCategory] = useState<string>('all transactions');
-  // const transactions=useSelector((state)=>state.)
+  
+   const transactionList = useSelector((state:RootState)=>state.transactions.transaction)
+  console.log(transactionList);
 
   return (
     <div>
@@ -61,6 +64,9 @@ const Transaction = () => {
               </tr>
             </thead>
             <tbody>
+              {/* {transactionList.map((transaction) => {
+                <TransactionDetail/>
+              })} */}
               <TransactionDetail img={ profilePic} name="Emma Richardson" category="General" trancDate="17 Aug 2018" amount="74.09" />
               <TransactionDetail img={ profilePic} name="Daniel Carter" category="Dinning Out" trancDate="13 May 2018" amount="72.09" />
               <TransactionDetail img={ profilePic} name="Sum Park" category="Grocery" trancDate="17 Jun 2018" amount="40.09" />
