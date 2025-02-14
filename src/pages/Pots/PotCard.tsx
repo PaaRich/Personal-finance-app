@@ -7,7 +7,7 @@ import { Context } from "../../context/Context";
 
 const PotCard = ({ color, label, target, amountSaved }: { color: string; label: string; target: number;amountSaved:number }) => {
     const [openDetail, setOpenDetail] = useState(false);
-    const { setOpenEditPot,setOpenDelPot} = useContext(Context);
+    const { setOpenEditPot,setOpenDelPot,setOpenAddMoney,setOpenWithdraw} = useContext(Context);
     const percent = useMemo(() => Math.floor((amountSaved/target)*100),[amountSaved,target])
   return (
       <div className="bg-white p-5 rounded-2xl">
@@ -43,8 +43,8 @@ const PotCard = ({ color, label, target, amountSaved }: { color: string; label: 
               </div>
 
               <div className="flex items-center gap-3 mt-10">
-                  <PotButton onclick={()=>console.log("add money")} label="+ Add money"/>
-                  <PotButton onclick={()=>console.log("withdrawn")} label="Withdraw"/>
+                  <PotButton onclick={()=>{setOpenAddMoney(true)}} label="+ Add money"/>
+                  <PotButton onclick={()=>{setOpenWithdraw(true)}} label="Withdraw"/>
               </div>
           </div>
     </div>
