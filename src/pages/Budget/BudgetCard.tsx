@@ -1,5 +1,6 @@
 import { BsThreeDots } from "react-icons/bs";
-import { useState,useMemo } from "react";
+import { useState, useMemo, useContext } from "react";
+import { Context } from "../../context/Context";
 import Detail from "../../components/Detail";
 import { Link } from "react-router-dom";
 import { IoMdArrowDropright } from "react-icons/io";
@@ -7,10 +8,11 @@ import SingleTransaction from "../Transaction/SingleTransaction";
 import profilePic from "../../assets/Person 3.jpg"
 import { BudgetCardProp } from "../../../types";
 
-const BudgetCard = ({label,amount,spent,color}:BudgetCardProp) => {
+const BudgetCard = ({ label, amount, spent, color }: BudgetCardProp) => {
+    
     const [openDetail, setOpenDetail] = useState(false);
+    const {setOpenEditPopUp,setOpenDelBudget} = useContext(Context);
     const percent=useMemo(()=>Math.floor((spent / amount) * 100),[spent,amount])
-    console.log(percent);
   return (
       <div className="bg-white rounded-2xl p-5">
           
@@ -25,7 +27,7 @@ const BudgetCard = ({label,amount,spent,color}:BudgetCardProp) => {
                   <BsThreeDots />
               </div>
               
-              {openDetail&&<Detail setState={setOpenDetail} name="Budget" editFn={()=>console.log('edit')} delFn={()=>console.log("delete")}/>}
+              {openDetail&&<Detail setState={setOpenDetail} name="Budget" editFn={()=>setOpenEditPopUp(true)} delFn={()=>setOpenDelBudget(true)}/>}
           </div>
 
           {/* body */}
