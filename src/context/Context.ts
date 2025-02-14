@@ -20,7 +20,11 @@ interface ContextProp{
     openEditPot: boolean;
     setOpenEditPot: React.Dispatch<React.SetStateAction<boolean>>;
     openDelPot: boolean;
-    setOpenDelPot:React.Dispatch<React.SetStateAction<boolean>>;
+    setOpenDelPot: React.Dispatch<React.SetStateAction<boolean>>;
+    openAddMoney: boolean;
+    setOpenAddMoney: React.Dispatch<React.SetStateAction<boolean>>;
+    openWithdraw: boolean;
+    setOpenWithdraw: React.Dispatch<React.SetStateAction<boolean>>;
 
 }
 //how to define the context

@@ -16,6 +16,8 @@ export const AppContext = ({children}:ContextProps) => {
   const [openDelPot, setOpenDelPot] = useState<boolean>(false);
   const [openDelBudget, setOpenDelBudget] = useState<boolean>(false);
   const [openPot, setOpenPot] = useState<boolean>(false);
+  const [openAddMoney, setOpenAddMoney] = useState(false);
+  const [openWithdraw, setOpenWithdraw] = useState(false);
   
   return (
       <Context.Provider value={{
@@ -32,7 +34,11 @@ export const AppContext = ({children}:ContextProps) => {
       openEditPot,
       setOpenEditPot,
       openDelPot,
-          setOpenDelPot,
+      setOpenDelPot,
+      openAddMoney,
+      setOpenAddMoney,
+      openWithdraw,
+          setOpenWithdraw,
           data
       }}>
           {children}
