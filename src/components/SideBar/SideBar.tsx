@@ -33,8 +33,12 @@ const SideBar = () => {
               </div>
 
                   {/* toggle menu */}
-            <div className="p-6">
-              <TbArrowBigLeftLinesFilled className="cursor-pointer hover:text-white" color="#b3b3b3" size={28} onClick={()=>setOpen(!open)}/>
+        <div className="p-6 flex items-center text-white opacity-70 cursor-pointer hover:opacity-100 duration-200" onClick={() => setOpen(!open)} >
+          <div  className=" mr-4">
+            <TbArrowBigLeftLinesFilled className={`${!open&&"rotate-180"} duration-200`}  size={28}  />
+          </div>
+          
+          <p className={`${open?"w-40":"w-0"} overflow-hidden duration-200 font-bold text-nowrap`}>Minimize menu</p>
             </div>
               </div>
               
