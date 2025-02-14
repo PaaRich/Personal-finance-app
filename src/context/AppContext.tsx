@@ -10,14 +10,29 @@ import {ContextProps} from '../../types'
 ];
 export const AppContext = ({children}:ContextProps) => {
   const [open, setOpen] = useState<boolean>(true);
-  const [openPopUp,setOpenPopUp]=useState<boolean>(false)
+  const [openPopUp, setOpenPopUp] = useState<boolean>(false)
+  const [openEditPopUp, setOpenEditPopUp] = useState<boolean>(false);
+  const [openEditPot, setOpenEditPot] = useState<boolean>(false);
+  const [openDelPot, setOpenDelPot] = useState<boolean>(false);
+  const [openDelBudget, setOpenDelBudget] = useState<boolean>(false);
+  const [openPot, setOpenPot] = useState<boolean>(false);
   
   return (
       <Context.Provider value={{
           open,
           setOpen,
           openPopUp,
-          setOpenPopUp,
+      setOpenPopUp,
+      openEditPopUp,
+      setOpenEditPopUp,
+      openDelBudget,
+      setOpenDelBudget,
+      openPot,
+      setOpenPot,
+      openEditPot,
+      setOpenEditPot,
+      openDelPot,
+          setOpenDelPot,
           data
       }}>
           {children}
