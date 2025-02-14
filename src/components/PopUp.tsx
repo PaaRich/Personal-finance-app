@@ -15,7 +15,7 @@ const PopUp = ({ label, btnLabel, children, submitFn, description, closeFn }: { 
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
         // className="w-[560px] bg-white rounded-2xl p-5 z-50 absolute top-[50%] left-[50%] translate-[-50%]">
-        className="w-[560px] bg-white rounded-2xl p-5">
+        className="w-[560px] bg-white rounded-2xl p-7">
           {/* nav */}
           <div className="flex items-center justify-between mb-5 mt-2">
               <h1 className="font-bold text-4xl">{label}</h1>
