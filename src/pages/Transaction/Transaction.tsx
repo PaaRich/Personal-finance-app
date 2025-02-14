@@ -14,7 +14,10 @@ const Transaction = () => {
   
    const transactionList = useSelector((state:RootState)=>state.transactions.transaction)
   console.log(transactionList);
-
+  const isLoading = useSelector((state: RootState) => state.transactions.isLoading);
+  console.log(isLoading);
+  const err=useSelector((state: RootState) => state.transactions.error);
+  console.log(err);
   return (
     <div>
       <Navbar title="Transaction"/>
