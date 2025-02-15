@@ -1,4 +1,4 @@
-const TransactionDetail = ({ img, name, category, trancDate, amount }: { img: string; name: string; category: string; trancDate: string; amount:string}) => {
+const TransactionDetail = ({  img, name, category, trancDate, amount }: { img: string; name: string; category: string; trancDate: string; amount:number}) => {
   return (
     <tr className="border-t-2 border-t-[var(--lighter-grey)]">
                 <td className="flex items-center py-4">

@@ -12,12 +12,14 @@ interface initialStateProp{
     isLoading: boolean;
     transaction: TransactionProp[];
     error: string | null;
+    count: number;
 }
 
 const initialState:initialStateProp = {
     isLoading: false,
     transaction: [],
-    error:" "
+    error: " ",
+    count:0
 }
 
 // 'https://jsonplaceholder.typicode.com/posts'
@@ -25,26 +27,26 @@ export const fetchTransaction = createAsyncThunk(
 
     'transaction/fetchTransaction', async (_,{rejectWithValue}) => {
         try {
-        const response = await fetch('../../Utils/data.json');
+        const response = await fetch('../../../public/data.json');
             if (!response.ok) {
                 throw new Error("Couldn't fetch")
             }
         const data = await response.json();
         return data;
         }
-        catch (error:any) {
+        catch (error:unknown) {
             return rejectWithValue(error.message||"something went wrong")
-        }
-
-        
-}
-    
-);
+        }   
+});
 
 const transactionSlice = createSlice({
     name: "transactions",
     initialState,
-    reducers: {},
+    reducers: {
+        increment: (state) => {
+            state.count+=1;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchTransaction.pending, (state) => {
@@ -62,4 +64,4 @@ const transactionSlice = createSlice({
 })
 
 export default transactionSlice.reducer;
-
+export const { increment } = transactionSlice.actions;
