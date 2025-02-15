@@ -23,7 +23,7 @@ const Layout = () => {
       
       <div className=" flex relative h-dvh bg-[var(--light-beige)]">
       {/* sidebar */}
-      <div className={`${open?" w-[320px]":"w-[76px]"} transition-all duration-300 ease-in-out`}>
+      <div className={`${open?" w-[350px]":"w-[76px]"} transition-all duration-300 ease-in-out`}>
         <SideBar />
       </div>
 
