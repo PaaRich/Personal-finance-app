@@ -41,10 +41,10 @@ const Withdraw = ({ potName, amount, target }: { amount: number; target: number;
                   </div>
               </div>
 
-              <form action="">
+              <div>
                   <label htmlFor="" className="font-medium text-[var(--mid-grey)]">Amount to Add</label>
                   <input className="w-full outline-0 border-2 rounded-[10px] p-3" type="number" min={1}  placeholder="eg. 200" value={minusAmount} onChange={(e)=>{setMinusAmount(Number(e.target.value))}}/>
-              </form>
+              </div>
           </div>
       </PopUp>
   )
