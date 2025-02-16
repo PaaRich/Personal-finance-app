@@ -1,15 +1,14 @@
 import Navbar from "../../components/Navbar/Navbar";
 import TransactionDetail from "./TransactionDetail";
-// import profilePic from "../../assets/Person 1.jpg"
+import profilePic from "../../assets/Person 1.jpg"
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { useState,useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { RootState,AppDispatch } from "../../redux/store";
 import { fetchTransaction } from "../../redux/Features/transactionSlice";
-import { increment } from "../../redux/Features/transactionSlice";
 
-interface transactionProp{
+export interface transactionProp{
   amount: number;
   avatar: string;
   name: string;
@@ -25,13 +24,17 @@ const Transaction = () => {
 
   
   const dispatch = useDispatch<AppDispatch>();
-  const transactionList = useSelector((state:RootState)=>state.transactions.transaction.transactions)
-  console.log(transactionList);
+  const transactionList = useSelector((state:RootState)=>state.transactions.data)
+  console.log(transactionList.budgets);
+  console.log(transactionList.pots);
+  console.log(transactionList.balance);
+  console.log(transactionList.transactions);
+  
   const isLoading = useSelector((state: RootState) => state.transactions.isLoading);
   console.log("Loading",isLoading);
   const err=useSelector((state: RootState) => state.transactions.error);
   console.log("error",err);
-  const count = useSelector((state: RootState) => state.transactions.count);
+  const count = useSelector((state: RootState) => state.transactions);
   console.log(count)
 
   
@@ -89,20 +92,18 @@ const Transaction = () => {
               </tr>
             </thead>
             <tbody>
-              {transactionList?.map((aTransaction:transactionProp) => {
-                <TransactionDetail img={ aTransaction.avatar} name={aTransaction.name} category={aTransaction.category} trancDate={aTransaction.date} amount={aTransaction.amount} />
-             })}
+              {transactionList.transactions?.map((aTransaction,index) => <TransactionDetail theKey={index} img={profilePic} name={aTransaction.name} category={aTransaction.category} trancDate={aTransaction.date} amount={aTransaction.amount} />)}
               
-              {/* <TransactionDetail img={ profilePic} name="Daniel Carter" category="Dinning Out" trancDate="13 May 2018" amount="72.09" />
-              <TransactionDetail img={ profilePic} name="Sum Park" category="Grocery" trancDate="17 Jun 2018" amount="40.09" />
-              <TransactionDetail img={ profilePic} name="Sie Richmond" category="Grocery" trancDate="17 Jun 2018" amount="40.09" /> */}
+              {/* <TransactionDetail img={ profilePic} name="Daniel Carter" category="Dinning Out" trancDate="13 May 2018" amount={23} />
+              <TransactionDetail img={ profilePic} name="Sum Park" category="Grocery" trancDate="17 Jun 2018" amount={23} />
+              <TransactionDetail img={ profilePic} name="Sie Richmond" category="Grocery" trancDate="17 Jun 2018" amount={23} /> */}
             </tbody>
           </table>
         </div>
 
         {/* pagination */}
         <div className="flex items-center justify-between mt-5">
-          <div className="py-2 px-3 border-2 bg-transparent rounded-[10px] flex items-center justify-around w-[94px]  hover:bg-[#93674f] hover:text-white duration-200 cursor-pointer " onClick={()=>{dispatch(increment())}}><IoMdArrowDropleft size={25}/>Prev</div>
+          <div className="py-2 px-3 border-2 bg-transparent rounded-[10px] flex items-center justify-around w-[94px]  hover:bg-[#93674f] hover:text-white duration-200 cursor-pointer " onClick={()=>console.log("hello")}><IoMdArrowDropleft size={25}/>Prev</div>
           <div>
             <span className="rounded-[10px] cursor-pointer mr-3 py-2 px-3 text-[18px] hover:text-white hover:bg-[#93674f] duration-200 border-2 border-[#93674f]" onClick={()=>{console.log("hello")}}>1</span>
             <span className="rounded-[10px] cursor-pointer mr-3 py-2 px-3 text-[18px] hover:text-white hover:bg-[#93674f] duration-200 border-2 border-[#93674f]" onClick={()=>{console.log("hello")}}>2</span>

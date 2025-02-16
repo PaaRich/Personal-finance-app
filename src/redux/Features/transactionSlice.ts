@@ -1,25 +1,41 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import { transactionProp } from "../../pages/Transaction/Transaction";
 
-interface TransactionProp{
-    avatar: string;
+interface PotsProp{
     name: string;
-    category: string;
-    date: string;
-    amount: number;
-    recurring:boolean
+    target: number;
+    total: number;
+    theme: string;
 }
+
+interface BudgetProp{
+    category: string;
+    maximum: number;
+    theme: string;
+}
+interface BalanceProp{
+    current: string;
+    income: string;
+    expenses: string;
+}
+interface dataProp{
+    balance:BalanceProp;
+    transactions: transactionProp[];
+    budgets: BudgetProp[];
+    pots: PotsProp[];
+
+}
+
 interface initialStateProp{
     isLoading: boolean;
-    transaction: TransactionProp[];
+    data:dataProp;
     error: string | null;
-    count: number;
 }
 
 const initialState:initialStateProp = {
     isLoading: false,
-    transaction: [],
+    data:{} as dataProp,
     error: " ",
-    count:0
 }
 
 // 'https://jsonplaceholder.typicode.com/posts'
@@ -27,7 +43,7 @@ export const fetchTransaction = createAsyncThunk(
 
     'transaction/fetchTransaction', async (_,{rejectWithValue}) => {
         try {
-        const response = await fetch('../../../public/data.json');
+        const response = await fetch('/data.json');
             if (!response.ok) {
                 throw new Error("Couldn't fetch")
             }
@@ -42,11 +58,7 @@ export const fetchTransaction = createAsyncThunk(
 const transactionSlice = createSlice({
     name: "transactions",
     initialState,
-    reducers: {
-        increment: (state) => {
-            state.count+=1;
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchTransaction.pending, (state) => {
@@ -54,7 +66,7 @@ const transactionSlice = createSlice({
             })
             .addCase(fetchTransaction.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.transaction = action.payload;
+                state.data = action.payload;
             })
             .addCase(fetchTransaction.rejected, (state, action) => {
                 state.isLoading = false;
@@ -64,4 +76,3 @@ const transactionSlice = createSlice({
 })
 
 export default transactionSlice.reducer;
-export const { increment } = transactionSlice.actions;
