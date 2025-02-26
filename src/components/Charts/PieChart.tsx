@@ -6,21 +6,21 @@ const totalLimit = 975;
 const spent = 338;
 
 const DonutChart = ({ width, height = 300, innerRadius = 70, outerRadius = 100 }: { width?: number; height?: number; innerRadius?: number; outerRadius?: number }) => {
-  const { data } = useContext(Context);
+  const { dataForChart } = useContext(Context);
 
   return (
     <div>
       {/* Pie Chart */}
       <PieChart width={width} height={height}>
         <Pie
-          data={data}
+          data={dataForChart}
           cx="50%"
           cy="50%"
           innerRadius={innerRadius}
           outerRadius={outerRadius}
           dataKey="value"
         >
-          {data.map((entry: { color: string | undefined; }, index: unknown) => (
+          {dataForChart.map((entry: { color: string | undefined; }, index: unknown) => (
             <Cell key={`cell-${index}`} fill={entry.color} />
           ))}
         </Pie>

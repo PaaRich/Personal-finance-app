@@ -1,36 +1,5 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import { transactionProp } from "../../pages/Transaction/Transaction";
-
-interface PotsProp{
-    name: string;
-    target: number;
-    total: number;
-    theme: string;
-}
-
-interface BudgetProp{
-    category: string;
-    maximum: number;
-    theme: string;
-}
-interface BalanceProp{
-    current: string;
-    income: string;
-    expenses: string;
-}
-interface dataProp{
-    balance:BalanceProp;
-    transactions: transactionProp[];
-    budgets: BudgetProp[];
-    pots: PotsProp[];
-
-}
-
-interface initialStateProp{
-    isLoading: boolean;
-    data:dataProp;
-    error: string | null;
-}
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { initialStateProp,dataProp } from "../../../types";
 
 const initialState:initialStateProp = {
     isLoading: false,

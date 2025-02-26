@@ -1,14 +1,19 @@
 import { Context } from "./Context";
-import { useState } from "react";
-import {ContextProps} from '../../types'
+import { useState,useEffect } from "react";
 
-  const data = [
+import { useSelector,useDispatch } from "react-redux";
+import { RootState,AppDispatch } from "../redux/store";
+import { fetchTransaction } from "../redux/Features/transactionSlice";
+
+
+  const dataForChart = [
   { name: "Entertainment", value: 50, color: "#0088A9" },
   { name: "Bills", value: 750, color: "#6EC1E4" },
   { name: "Dining Out", value: 75, color: "#E9BFA5" },
   { name: "Personal Care", value: 100, color: "#5B5A71" },
 ];
-export const AppContext = ({children}:ContextProps) => {
+export const AppContext = ({ children }: React.PropsWithChildren) => {
+  
   const [open, setOpen] = useState<boolean>(true);
   const [openPopUp, setOpenPopUp] = useState<boolean>(false)
   const [openEditPopUp, setOpenEditPopUp] = useState<boolean>(false);
@@ -18,6 +23,19 @@ export const AppContext = ({children}:ContextProps) => {
   const [openPot, setOpenPot] = useState<boolean>(false);
   const [openAddMoney, setOpenAddMoney] = useState(false);
   const [openWithdraw, setOpenWithdraw] = useState(false);
+
+
+  const dispatch = useDispatch<AppDispatch>();
+ 
+  const {isLoading,error,data} = useSelector((state: RootState) => state.transactions);
+  
+  console.log(isLoading,error)
+
+  
+
+  useEffect(() => {
+    dispatch(fetchTransaction());
+  },[dispatch])
   
   return (
       <Context.Provider value={{
@@ -39,6 +57,7 @@ export const AppContext = ({children}:ContextProps) => {
       setOpenAddMoney,
       openWithdraw,
           setOpenWithdraw,
+      dataForChart,
           data
       }}>
           {children}

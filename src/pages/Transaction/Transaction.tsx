@@ -3,45 +3,17 @@ import TransactionDetail from "./TransactionDetail";
 import profilePic from "../../assets/Person 1.jpg"
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
-import { useState,useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
-import { RootState,AppDispatch } from "../../redux/store";
-import { fetchTransaction } from "../../redux/Features/transactionSlice";
+import { useState, useContext } from "react";
+import { Context } from "../../context/Context";
 
-export interface transactionProp{
-  amount: number;
-  avatar: string;
-  name: string;
-  recurring: boolean;
-  category: string;
-  date: string;
-}
+
 
 const Transaction = () => {
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState<string>("latest")
   const [category, setCategory] = useState<string>('all transactions');
-
   
-  const dispatch = useDispatch<AppDispatch>();
-  const transactionList = useSelector((state:RootState)=>state.transactions.data)
-  console.log(transactionList.budgets);
-  console.log(transactionList.pots);
-  console.log(transactionList.balance);
-  console.log(transactionList.transactions);
-  
-  const isLoading = useSelector((state: RootState) => state.transactions.isLoading);
-  console.log("Loading",isLoading);
-  const err=useSelector((state: RootState) => state.transactions.error);
-  console.log("error",err);
-  const count = useSelector((state: RootState) => state.transactions);
-  console.log(count)
-
-  
-
-  useEffect(() => {
-    dispatch(fetchTransaction());
-  },[dispatch])
+  const {data} = useContext(Context);
 
   return (
     <div>
@@ -92,7 +64,7 @@ const Transaction = () => {
               </tr>
             </thead>
             <tbody>
-              {transactionList.transactions?.map((aTransaction,index) => <TransactionDetail theKey={index} img={profilePic} name={aTransaction.name} category={aTransaction.category} trancDate={aTransaction.date} amount={aTransaction.amount} />)}
+              {data.transactions?.map((aTransaction,index) => <TransactionDetail theKey={index} img={profilePic} name={aTransaction.name} category={aTransaction.category} trancDate={aTransaction.date} amount={aTransaction.amount} />)}
               
               {/* <TransactionDetail img={ profilePic} name="Daniel Carter" category="Dinning Out" trancDate="13 May 2018" amount={23} />
               <TransactionDetail img={ profilePic} name="Sum Park" category="Grocery" trancDate="17 Jun 2018" amount={23} />

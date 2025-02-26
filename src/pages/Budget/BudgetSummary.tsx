@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { Context } from "../../context/Context";
 
 const BudgetSummary = () => {
-  const { data } = useContext(Context);
+  const { dataForChart } = useContext(Context);
   return (
     <div  className="p-5 bg-white rounded-2xl">
       <div className="flex items-center justify-between">
@@ -21,7 +21,7 @@ const BudgetSummary = () => {
         {/* Legend */}
         <div className="flex flex-col gap-2 basis-[50%]">
           <div className="mx-auto">
-                {data.map((item, index) => (
+                {dataForChart.map((item, index) => (
               <div key={index} className="flex items-center gap-3 mb-3">
                 <div className="w-2 h-10 rounded" style={{ background: item.color }}></div>
                 <div>

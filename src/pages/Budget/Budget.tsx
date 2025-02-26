@@ -1,22 +1,14 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Button from "../../components/Button/Button";
 import DonutChart from "../../components/Charts/PieChart";
-import { useContext,useEffect } from "react";
+import { useContext } from "react";
 import { Context } from "../../context/Context";
 import BudgetCard from "./BudgetCard";
-import { useSelector,useDispatch } from "react-redux";
-import { RootState,AppDispatch } from "../../redux/store";
-import { fetchTransaction } from "../../redux/Features/transactionSlice";
+
 
 const Budget = () => {
-  const { data, openPopUp, setOpenPopUp } = useContext(Context);
-  const budgets = useSelector((state: RootState) => state.transactions.data.budgets)
-  const dispatch = useDispatch<AppDispatch>();
-  
-
-   useEffect(() => {
-      dispatch(fetchTransaction());
-    },[dispatch])
+  const { data,dataForChart, openPopUp, setOpenPopUp } = useContext(Context);
+ 
   
   return (
     <div className="relative">
@@ -34,7 +26,7 @@ const Budget = () => {
 
           <div>
             <h1 className="font-bold text-2xl mb-5">Spending Summary</h1>
-              {data.map((item, index) => (
+              {dataForChart.map((item, index) => (
                 <div key={index} className="flex items-center justify-between border-b-2 border-b-[var(--lighter-grey)] py-5">
                   <div className="flex items-center gap-x-3">
                     <div className="w-[4px] h-6 rounded" style={{ background: item.color }}></div>
@@ -55,7 +47,7 @@ const Budget = () => {
 
         {/* cards */}
         <div className="grow w-auto flex flex-col gap-y-5">
-          {budgets?.map((aBudget) => <BudgetCard color={ aBudget.theme} label={aBudget.category} amount={aBudget.maximum} spent={50/100*aBudget.maximum} />)}
+          {data.budgets?.map((aBudget) => <BudgetCard color={ aBudget.theme} label={aBudget.category} amount={aBudget.maximum} spent={50/100*aBudget.maximum} />)}
           {/* <BudgetCard color="#277c78" label="Entertainment" amount={200} spent={150}/>
           <BudgetCard color="#82c9d7" label="Bills" amount={350} spent={50}/>
           <BudgetCard color="#60a5fa" label="Dinning Out" amount={250} spent={70}/>

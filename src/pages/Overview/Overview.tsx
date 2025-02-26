@@ -3,19 +3,23 @@ import AmountCard from "../../components/AmountCard/AmountCard";
 import PotSummary from "../Pots/PotSummary";
 import TransactionSummary from "../Transaction/TransactionSummary";
 import RecurringBillSummary from "../Recurring_bills/RecurringBillSummary";
-
 import BudgetSummary from "../Budget/BudgetSummary";
+import { useContext } from "react";
+import { Context } from "../../context/Context";
 
 const Overview = () => {
+
+  const { data } = useContext(Context);
+  
   return (
     <div>
       <Navbar title="Overview"/>
       <div>
         {/* amount cards */}
         <div className="flex items-center justify-between gap-x-5">
-          <AmountCard color="dark" label="Current Balance" amount="4836.00"/>
-          <AmountCard color="light" label="Income" amount='3814.25'/>
-          <AmountCard color="light" label="Expenses" amount="1700.50"/>
+          <AmountCard color="dark" label="Current Balance" amount={ data.balance.current} />
+          <AmountCard color="light" label="Income" amount={data.balance.income}/>
+          <AmountCard color="light" label="Expenses" amount={ data.balance.expenses} />
         </div>
 
         {/* summaries */}

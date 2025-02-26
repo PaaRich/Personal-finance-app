@@ -1,4 +1,6 @@
 import { createContext } from "react";
+import { dataProp } from "../../types";
+
 
 type p = {
     name: string;
@@ -10,7 +12,7 @@ interface ContextProp{
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     openPopUp: boolean;
     setOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
-    data: p[];
+    dataForChart: p[];
     openEditPopUp: boolean;
     setOpenEditPopUp: React.Dispatch<React.SetStateAction<boolean>>;
     openDelBudget: boolean;
@@ -25,7 +27,7 @@ interface ContextProp{
     setOpenAddMoney: React.Dispatch<React.SetStateAction<boolean>>;
     openWithdraw: boolean;
     setOpenWithdraw: React.Dispatch<React.SetStateAction<boolean>>;
-
+    data:dataProp
 }
 //how to define the context
 export const Context = createContext<ContextProp>({} as ContextProp);

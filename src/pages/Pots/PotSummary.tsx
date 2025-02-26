@@ -2,8 +2,14 @@ import { Link } from "react-router-dom";
 import { IoMdArrowDropright } from "react-icons/io";
 import { FaSackDollar } from "react-icons/fa6";
 import SmallPotsCard from "./SmallPotsCard";
+import { useContext } from "react";
+import { Context } from "../../context/Context";
 
 const PotSummary = () => {
+
+  const { data } = useContext(Context);
+  const totalSaved=data.pots.reduce((a,b)=>a+b.total,0)
+
   return (
     <div className="p-5 bg-white rounded-2xl w-[669px]">
 
@@ -18,7 +24,7 @@ const PotSummary = () => {
           <FaSackDollar color="#277c78" size={30}/>
           <div>
             <p className="text-[var(--mid-grey)] mb-2 text-[16px]">Total Saved</p>
-            <h1 className="font-bold text-4xl">$850</h1>
+            <h1 className="font-bold text-4xl">${totalSaved }</h1>
           </div>
         </div>
 
