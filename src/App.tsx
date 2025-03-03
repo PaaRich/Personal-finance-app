@@ -5,6 +5,7 @@ import Transaction from "./pages/Transaction/Transaction";
 import Budget from "./pages/Budget/Budget";
 import Pots from "./pages/Pots/Pots";
 import RecurringBills from "./pages/Recurring_bills/RecurringBills";
+import Signing from "./pages/Signing/signing";
 
 
 function App() {
@@ -12,10 +13,11 @@ function App() {
     <>
       <Routes>
         {/* login */}
-        <Route path="" element={<h1>Login Page</h1>} />
+        <Route path="/" element={<Signing />} />
+        
         
         {/* pages */}
-        <Route path="/" element={<Layout/>}>
+        <Route path="/overview" element={<Layout/>}>
           <Route index element={<Overview />} />
           <Route path="transactions" element={<Transaction/> } />
           <Route path="budgets" element={<Budget/> } />
