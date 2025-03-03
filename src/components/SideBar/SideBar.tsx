@@ -24,7 +24,7 @@ const SideBar = () => {
                 {/* taps */}
               <div >
                 <ul>
-                  <li><NavLink to={'/'}><AiFillHome size={28} className="mr-4"/> <p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Overview</p></NavLink></li>
+                  <li><NavLink to={'overview'}><AiFillHome size={28} className="mr-4"/> <p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Overview</p></NavLink></li>
                   <li><NavLink to='transactions'> <LuArrowDownUp size={28} className="mr-4"/> <p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Transactions</p></NavLink></li>
                   <li><NavLink to='budgets'><FaBalanceScaleRight size={28} className="mr-4"/><p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Budgets</p></NavLink></li>
                   <li><NavLink to='pots'><FaSackDollar size={28} className="mr-4"/><p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Pots</p></NavLink></li>

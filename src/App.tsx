@@ -17,8 +17,8 @@ function App() {
         
         
         {/* pages */}
-        <Route path="/overview" element={<Layout/>}>
-          <Route index element={<Overview />} />
+        <Route  element={<Layout/>}>
+          <Route path="overview" element={<Overview />} />
           <Route path="transactions" element={<Transaction/> } />
           <Route path="budgets" element={<Budget/> } />
           <Route path="pots" element={<Pots/> } />
