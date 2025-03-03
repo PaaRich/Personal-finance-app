@@ -1,9 +1,7 @@
 import { Context } from "./Context";
-import { useState,useEffect } from "react";
+import { useState } from "react";
 
-import { useSelector,useDispatch } from "react-redux";
-import { RootState,AppDispatch } from "../redux/store";
-import { fetchTransaction } from "../redux/Features/transactionSlice";
+
 
 
   const dataForChart = [
@@ -25,17 +23,7 @@ export const AppContext = ({ children }: React.PropsWithChildren) => {
   const [openWithdraw, setOpenWithdraw] = useState(false);
 
 
-  const dispatch = useDispatch<AppDispatch>();
- 
-  const {isLoading,error,data} = useSelector((state: RootState) => state.transactions);
-  
-  console.log(isLoading,error)
 
-  
-
-  useEffect(() => {
-    dispatch(fetchTransaction());
-  },[dispatch])
   
   return (
       <Context.Provider value={{
@@ -57,8 +45,7 @@ export const AppContext = ({ children }: React.PropsWithChildren) => {
       setOpenAddMoney,
       openWithdraw,
           setOpenWithdraw,
-      dataForChart,
-          data
+      dataForChart
       }}>
           {children}
       </Context.Provider>

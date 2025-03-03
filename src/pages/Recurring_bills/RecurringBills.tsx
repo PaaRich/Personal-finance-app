@@ -7,6 +7,7 @@ import Bill from "./Bill";
 
 const RecurringBills = () => {
   const [search, setSearch] = useState('');
+  const [sortValue,setSortValue]=useState('latest')
 
   return (
     <div>
@@ -61,8 +62,8 @@ const RecurringBills = () => {
             {/* sort */}
             <div>
               <label className="mr-3" htmlFor="">Sort by</label>
-              <select className="outline-0 border-2 p-3 rounded-[10px] text-[18px]" name="sort">
-                <option selected value="latest">latest</option>
+              <select className="outline-0 border-2 p-3 rounded-[10px] text-[18px]" name="sort" value={sortValue} onChange={e=>setSortValue(e.target.value)}>
+                <option value="latest">latest</option>
                 <option value="A to Z">A to Z</option>
                 <option value="Z to A">Z to A</option>
                 <option value="highest">highest</option>

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { dataProp } from "../../types";
+
 
 
 type p = {
@@ -27,7 +27,7 @@ interface ContextProp{
     setOpenAddMoney: React.Dispatch<React.SetStateAction<boolean>>;
     openWithdraw: boolean;
     setOpenWithdraw: React.Dispatch<React.SetStateAction<boolean>>;
-    data:dataProp
+    
 }
 //how to define the context
 export const Context = createContext<ContextProp>({} as ContextProp);

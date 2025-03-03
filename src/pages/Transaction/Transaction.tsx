@@ -3,8 +3,10 @@ import TransactionDetail from "./TransactionDetail";
 import profilePic from "../../assets/Person 1.jpg"
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
-import { useState, useContext } from "react";
-import { Context } from "../../context/Context";
+import { useState, useEffect } from "react";
+import { useSelector,useDispatch } from "react-redux";
+import { RootState,AppDispatch } from "../../redux/store";
+import { fetchTransaction } from "../../redux/Features/transactionSlice";
 
 
 
@@ -13,7 +15,17 @@ const Transaction = () => {
   const [sort, setSort] = useState<string>("latest")
   const [category, setCategory] = useState<string>('all transactions');
   
-  const {data} = useContext(Context);
+  const dispatch = useDispatch<AppDispatch>();
+ 
+  const {isLoading,error,data} = useSelector((state: RootState) => state.transactions);
+  
+  console.log(isLoading,error,data)
+
+  
+
+  useEffect(() => {
+    dispatch(fetchTransaction());
+  },[dispatch])
 
   return (
     <div>

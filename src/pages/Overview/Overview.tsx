@@ -4,12 +4,9 @@ import PotSummary from "../Pots/PotSummary";
 import TransactionSummary from "../Transaction/TransactionSummary";
 import RecurringBillSummary from "../Recurring_bills/RecurringBillSummary";
 import BudgetSummary from "../Budget/BudgetSummary";
-import { useContext } from "react";
-import { Context } from "../../context/Context";
+
 
 const Overview = () => {
-
-  const { data } = useContext(Context);
   
   return (
     <div>
@@ -17,9 +14,9 @@ const Overview = () => {
       <div>
         {/* amount cards */}
         <div className="flex items-center justify-between gap-x-5">
-          <AmountCard color="dark" label="Current Balance" amount={ data.balance.current} />
-          <AmountCard color="light" label="Income" amount={data.balance.income}/>
-          <AmountCard color="light" label="Expenses" amount={ data.balance.expenses} />
+          <AmountCard color="dark" label="Current Balance" amount="37374" />
+          <AmountCard color="light" label="Income" amount="4848"/>
+          <AmountCard color="light" label="Expenses" amount="3455" />
         </div>
 
         {/* summaries */}
