@@ -5,7 +5,9 @@ import Transaction from "./pages/Transaction/Transaction";
 import Budget from "./pages/Budget/Budget";
 import Pots from "./pages/Pots/Pots";
 import RecurringBills from "./pages/Recurring_bills/RecurringBills";
-import Signing from "./pages/Signing/signing";
+import Signing from "./pages/Signing/Signing";
+import SignInForm from "./pages/Signing/SignInForm";
+import SignUpForm from "./pages/Signing/SignUpForm";
 
 
 function App() {
@@ -13,7 +15,10 @@ function App() {
     <>
       <Routes>
         {/* login */}
-        <Route path="/" element={<Signing />} />
+        <Route path="/" element={<Signing />} >
+          <Route index element={ <SignUpForm/>} />
+          <Route path="login" element={ <SignInForm/>} />
+          </Route>
         
         
         {/* pages */}
