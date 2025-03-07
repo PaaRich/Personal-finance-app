@@ -10,7 +10,7 @@ const BudgetSummary = () => {
     <div  className="p-3 md:p-5 bg-white rounded-2xl">
       <div className="flex items-center justify-between">
         <p className="text-2xl font-bold tracking-wide">Budgets</p>
-        <Link className="inline-flex items-center text-[18px] hover:underline" to={'budgets'}>View All<IoMdArrowDropright color="black" size={25}/></Link>
+        <Link className="inline-flex items-center text-[18px] hover:underline" to={'/budgets'}>View All<IoMdArrowDropright color="black" size={25}/></Link>
       </div>
 
       <div className="flex flex-col md:flex-row items-start  md:items-center justify-between ">

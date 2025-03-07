@@ -9,7 +9,7 @@ const TransactionSummary = () => {
       {/* nav */}
       <div className="flex items-center justify-between">
         <p className="text-2xl font-bold tracking-wide">Transactions</p>
-        <Link className="inline-flex items-center text-[18px] hover:underline" to={'transactions'}>View All<IoMdArrowDropright color="black" size={25}/></Link>
+        <Link className="inline-flex items-center text-[18px] hover:underline" to={'/transactions'}>View All<IoMdArrowDropright color="black" size={25}/></Link>
       </div>
 
       {/* list  */}
