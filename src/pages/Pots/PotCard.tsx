@@ -10,7 +10,7 @@ const PotCard = ({ color, label, target, amountSaved }: { color: string; label: 
     const { setOpenEditPot,setOpenDelPot,setOpenAddMoney,setOpenWithdraw} = useContext(Context);
     const percent = useMemo(() => Math.floor((amountSaved/target)*100),[amountSaved,target])
   return (
-      <div className="bg-white p-5 rounded-2xl">
+      <div className="bg-white p-3 md:p-5 rounded-2xl">
           {/* nav */}
           <div className="flex items-center justify-between relative">
               <div className="flex items-center">

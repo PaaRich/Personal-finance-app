@@ -17,14 +17,14 @@ const Budget = () => {
       </Navbar>
 
       {/* body */}
-      <div className="flex gap-x-5">
+      <div className="flex flex-col lg:flex-row gap-y-5 lg:gap-x-5">
 
-        <div className="w-[428px] grow-0 bg-white rounded-2xl p-5 h-fit">
+        <div className="flex max-sm:flex-col flex-row items-center justify-between lg:flex-col w-full lg:w-[428px] grow-0 bg-white rounded-2xl px-3 md:p-5 h-fit">
           <div>
             <DonutChart width={380} innerRadius={70} outerRadius={110}/>
           </div>
 
-          <div>
+          <div className="basis-[50%] lg:basis-[100%]">
             <h1 className="font-bold text-2xl mb-5">Spending Summary</h1>
               {dataForChart.map((item, index) => (
                 <div key={index} className="flex items-center justify-between border-b-2 border-b-[var(--lighter-grey)] py-5">
@@ -34,8 +34,8 @@ const Budget = () => {
                   </div>
 
                   <div className="flex items-center">
-                    <p className="font-bold text-[19px] pr-2">${item.value.toFixed(2)}</p>
-                    <p>of ${item.value.toFixed(2) }</p>
+                    <p className="font-bold text-xl pr-2">${item.value.toFixed(2)}</p>
+                    <p >of ${item.value.toFixed(2) }</p>
                 </div>
                 
               

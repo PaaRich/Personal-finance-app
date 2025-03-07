@@ -13,21 +13,21 @@ const Overview = () => {
       <Navbar title="Overview"/>
       <div>
         {/* amount cards */}
-        <div className="flex items-center justify-between gap-x-5">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-y-5 md:gap-x-5">
           <AmountCard color="dark" label="Current Balance" amount="37374" />
           <AmountCard color="light" label="Income" amount="4848"/>
           <AmountCard color="light" label="Expenses" amount="3455" />
         </div>
 
         {/* summaries */}
-        <div className="flex gap-x-5 pt-4">
+        <div className="flex flex-col lg:flex-row gap-x-5 pt-4 gap-y-5 lg:gap-y-0">
 
           <div className="flex flex-col basis-[50%] grow-0 gap-y-5">
             <PotSummary />
             <TransactionSummary/>
           </div>
 
-          <div className="flex flex-col basis-[50%] grow gap-y-5">
+          <div className="flex flex-col basis-[50%] grow gap-y-5 ">
             {/* budget */}
             <div>
               <BudgetSummary/>

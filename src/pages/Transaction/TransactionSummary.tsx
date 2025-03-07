@@ -5,7 +5,7 @@ import profilePic from "../../assets/Person 1.jpg"
 
 const TransactionSummary = () => {
   return (
-    <div className="p-5 bg-white rounded-2xl w-[669px]">
+    <div className="p-3 md:p-5 bg-white rounded-2xl w-full ">
       {/* nav */}
       <div className="flex items-center justify-between">
         <p className="text-2xl font-bold tracking-wide">Transactions</p>

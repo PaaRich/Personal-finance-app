@@ -7,20 +7,20 @@ import { Context } from "../../context/Context";
 const BudgetSummary = () => {
   const { dataForChart } = useContext(Context);
   return (
-    <div  className="p-5 bg-white rounded-2xl">
+    <div  className="p-3 md:p-5 bg-white rounded-2xl">
       <div className="flex items-center justify-between">
         <p className="text-2xl font-bold tracking-wide">Budgets</p>
         <Link className="inline-flex items-center text-[18px] hover:underline" to={'budgets'}>View All<IoMdArrowDropright color="black" size={25}/></Link>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row items-start  md:items-center justify-between ">
         <div className="basis-[50%]">
           <DonutChart width={300} />
         </div>
         
         {/* Legend */}
-        <div className="flex flex-col gap-2 basis-[50%]">
-          <div className="mx-auto">
+        <div className="max-md:grid grid-cols-2 max-md:gap-x-5 md:flex md:flex-col gap-2 basis-[50%]">
+          
                 {dataForChart.map((item, index) => (
               <div key={index} className="flex items-center gap-3 mb-3">
                 <div className="w-2 h-10 rounded" style={{ background: item.color }}></div>
@@ -32,7 +32,7 @@ const BudgetSummary = () => {
             ))}
           </div>
         
-      </div>
+      
       </div>
     </div>
   )

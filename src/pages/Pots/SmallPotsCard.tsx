@@ -3,7 +3,7 @@
 const SmallPotsCard = ({ color, label, amount }: { color: string; label: string; amount:string}) => {
   return (
     <div style={{borderLeftColor:`${color}`}} className="border-l-[5px] pl-3">
-          <p className="text-[var(--mid-grey)]">{ label}</p>
+          <p className="text-[var(--mid-grey)] text-nowrap text-ellipsis">{ label}</p>
           <p className="font-bold text-[18px]">${ amount }</p>
     </div>
   )

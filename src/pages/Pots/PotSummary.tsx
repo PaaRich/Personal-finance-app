@@ -6,16 +6,16 @@ import SmallPotsCard from "./SmallPotsCard";
 const PotSummary = () => {
 
   return (
-    <div className="p-5 bg-white rounded-2xl w-[669px]">
+    <div className="p-3 md:p-5 bg-white rounded-2xl w-full">
 
       <div className="flex items-center justify-between">
         <p className="text-2xl font-bold tracking-wide">Pots</p>
-        <Link className="inline-flex items-center text-[18px] hover:underline" to={'pots'}>See Details<IoMdArrowDropright color="black" size={25}/></Link>
+        <Link className="inline-flex items-center text-[18px] hover:underline" to={'/pots'}>See Details<IoMdArrowDropright color="black" size={25}/></Link>
       </div>
 
-      <div className="flex gap-x-5 pt-5">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-y-5 md:gap-x-5 pt-5">
 
-        <div className="flex items-center gap-x-4 basis-[50%] bg-[var(--light-beige)] p-5 rounded-2xl">
+        <div className="flex items-center gap-x-4 basis-[50%] bg-[var(--light-beige)] p-5 rounded-2xl w-full">
           <FaSackDollar color="#277c78" size={30}/>
           <div>
             <p className="text-[var(--mid-grey)] mb-2 text-[16px]">Total Saved</p>

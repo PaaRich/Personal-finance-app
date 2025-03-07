@@ -1,14 +1,14 @@
 const TransactionDetail = ({ theKey, img, name, category, trancDate, amount }: { theKey: number; img: string; name: string; category: string; trancDate: string; amount:number}) => {
   return (
-    <tr key={theKey} className="border-t-2 border-t-[var(--lighter-grey)]">
-                <td className="flex items-center py-4">
+    <tr key={theKey} className="border-t-2 border-t-[var(--lighter-grey)] text-nowrap">
+      <td className="flex items-center py-4">
               <img className="w-[50px] h-[50px] rounded-full mr-3" src={img} alt="img" />
-              <p className="font-bold text-[18px] text-[var(--deep-grey)]">{ name}</p>
-                </td>
-          <td className="text-center text-[var(--mid-grey)]">{ category}</td>
-          <td className="text-center text-[var(--mid-grey)]">{ trancDate}</td>
-          <td className="text-right font-bold text-[18px] text-[var(--deep-grey)]">${ amount}</td>
-              </tr>
+              <p className="font-bold text-sm md:text-[18px] text-[var(--deep-grey)] ">{ name}</p>
+      </td>
+      <td className="text-center text-[var(--mid-grey)]">{ category}</td>
+      <td className="text-center text-[var(--mid-grey)]">{ trancDate}</td>
+      <td className="text-right font-bold text-[18px] text-[var(--deep-grey)]">${ amount}</td>
+    </tr>
   )
 }
 
