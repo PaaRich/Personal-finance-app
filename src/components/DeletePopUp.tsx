@@ -13,10 +13,10 @@ const DeletePopUp = ({ label, type, setClose }: { label: string; type: string;se
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-                className="w-[560px] bg-white rounded-2xl p-8 z-50 absolute top-[50%] left-[50%] translate-[-50%]">
+                className="lg:w-[560px] w-[90%] bg-white rounded-2xl p-5 lg:p-8 z-50 absolute top-[50%] left-[50%] translate-[-50%]">
           
           <div className="flex items-center justify-between">
-              <h1 className="font-bold text-[32px]">Delete '{label}'?</h1>
+              <h1 className="font-bold text-2xl lg:text-[32px]">Delete '{label}'?</h1>
             <SlClose className="cursor-pointer" size={25} onClick={()=>setClose(false)}/>
           </div>
           

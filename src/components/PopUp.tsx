@@ -15,10 +15,10 @@ const PopUp = ({ label, btnLabel, children, submitFn, description, closeFn }: { 
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
         // className="w-[560px] bg-white rounded-2xl p-5 z-50 absolute top-[50%] left-[50%] translate-[-50%]">
-        className="w-[560px] bg-white rounded-2xl p-7">
+        className="lg:w-[560px] w-[90%] bg-white rounded-2xl p-5 lg:p-7">
           {/* nav */}
           <div className="flex items-center justify-between mb-5 mt-2">
-              <h1 className="font-bold text-4xl">{label}</h1>
+              <h1 className="font-bold text-[24px] lg:text-4xl">{label}</h1>
                 <SlClose className="cursor-pointer" size={26} onClick={closeFn}/>
           </div>
           <p className="mb-5 text-[18px] text-[var(--mid-grey)]">{ description}</p>
