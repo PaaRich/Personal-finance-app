@@ -49,7 +49,7 @@ const Layout = () => {
       </div>
 
       {/* bottom nav */}
-      <div className="lg:hidden absolute bottom-0 w-full h-[74px] md:h-[85px]">
+      <div className="lg:hidden fixed bottom-0 w-full h-[74px] md:h-[85px]">
         <BottomNav />
       </div>
     </div>
