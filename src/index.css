@@ -10,6 +10,9 @@
 --light-beige:#f8f4f0;
 --green:#277c78;
 }
+*{
+    font-family: "Poppins",san-serif;
+}
 nav ul li,
 .bottom-nav a {
     color: var(--light-grey);
