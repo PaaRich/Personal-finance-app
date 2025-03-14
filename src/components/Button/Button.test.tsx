@@ -12,14 +12,14 @@ describe("Testing the button", () => {
         expect(Btn).toHaveTextContent("Title")
     });
 
-    test("responsiveness", () => {
+    test("responsiveness", async () => {
         userEvent.setup()
         render(<Button title="Add New Budget" onclick={() => console.log("onclick")} />);
-        const Btn = screen.getByRole('button',{name:"Add New Budget"});
-        userEvent.hover(Btn);
-        expect(Btn).toHaveStyle("backgroundColor:#696868");
+        const Btn = screen.getByRole('button',{name:"+ Add New Budget"});
+        await userEvent.hover(Btn);
+        expect(Btn).toHaveStyle("backgroundColor:rgb(105, 104, 104)");
         const mockOnClick=vi.fn()
-        userEvent.click(Btn);
+        await userEvent.click(Btn);
         expect(mockOnClick).toBeCalledTimes(1)
     })
 })
