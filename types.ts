@@ -47,3 +47,8 @@ export interface initialStateProp{
     data:dataProp;
     error: string | null;
 }
+export interface potItemProp{
+    name: string;
+    target: number;
+    theme: string;
+}
