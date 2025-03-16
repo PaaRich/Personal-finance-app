@@ -1,9 +1,10 @@
 import { SlClose } from "react-icons/sl";
 import { motion } from "framer-motion";
+
 // import { useContext } from "react";
 // import { Context } from "../context/Context";
 
-const PopUp = ({ label, btnLabel, children, submitFn, description, closeFn }: { description: string; label: string; btnLabel: string; children: React.ReactNode; submitFn: () => void; closeFn:()=>void}) => {
+const PopUp = ({ label, btnLabel, children, submitFn, description, closeFn }: { description: string; label: string; btnLabel: string; children: React.ReactNode; submitFn: (e: React.FormEvent<HTMLFormElement>) => void; closeFn:()=>void}) => {
     // const { setOpenPopUp } = useContext(Context);
 
   return (
@@ -22,10 +23,12 @@ const PopUp = ({ label, btnLabel, children, submitFn, description, closeFn }: { 
                 <SlClose className="cursor-pointer" size={26} onClick={closeFn}/>
           </div>
           <p className="mb-5 text-[18px] text-[var(--mid-grey)]">{ description}</p>
-          <form>
-              {children}
+          <form onSubmit={submitFn}>
+            {children}
+            <button className="w-full rounded-[10px] hover:opacity-80 cursor-pointer bg-black text-white font-bold py-4 mt-5" type="submit">{ btnLabel}</button>
+            {/* <button className="w-full rounded-[10px] hover:opacity-80 cursor-pointer bg-black text-white font-bold py-4 mt-5" onClick={(e:)=>{}}>{ btnLabel}</button> */}
           </form>
-          <button className="w-full rounded-[10px] hover:opacity-80 cursor-pointer bg-black text-white font-bold py-4 mt-5" onClick={submitFn}>{ btnLabel}</button>
+          
     </motion.div>
     </div>
       
