@@ -1,27 +1,63 @@
-// import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import { getDocs,collection } from "firebase/firestore";
-// import db  from "../../../firebase/firestore";
+import { createSlice } from "@reduxjs/toolkit";
+import { DocumentData } from "firebase/firestore";
+// Ensure the correct import path
 
-// const initialState = {
-//     isLoading: true,
-//     data: [],
-//     error:''
-// }
+// Define initial state
+interface PotsState {
+  isLoading: boolean;
+  data: DocumentData[];
+  error: string | null;
+}
 
-//     const collectionRef = collection(db, "pots");
-// export const fetchPots = createAsyncThunk(
+const initialState: PotsState = {
+  isLoading: false,
+  data: [],
+  error: null,
+};
 
 
-//     'pots/fetchPots', async (_,{rejectWithValue}) => {
-//         try {
-//         const response = await getDocs(collectionRef);
-//             if (!response.ok) {
-//                 throw new Error("Couldn't fetch")
-//             }
-//         const data = await response.json();
-//         return data;
-//         }
-//         catch (error:unknown) {
-//             return rejectWithValue(error.message||"something went wrong")
-//         }   
-// });
+// Redux Slice
+const potsSlice = createSlice({
+  name: "pots",
+  initialState,
+  reducers: {
+    setLoading: (state) => {
+      state.isLoading = true;
+    },
+    setPots: (state, action) => {
+      state.data = action.payload;
+      state.isLoading = false;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+      state.isLoading = false;
+    },
+  },
+});
+
+// Actions
+export const { setLoading, setPots, setError } = potsSlice.actions;
+export default potsSlice.reducer;
+
+// Thunk: Listen to Firestore real-time updates
+
+// export const listenToPots = () => (dispatch: AppDispatch) => {
+//   dispatch(setLoading(true));
+
+//   const unsubscribe = onSnapshot(
+//     budgetCollectionRef,
+//     (snapshot: QuerySnapshot<DocumentData>) => {
+//       const pots = snapshot.docs.map((doc) => ({
+//         id: doc.id,
+//         ...doc.data(),
+//       }));
+//       dispatch(setPots(pots));
+//     },(error) => {
+//       dispatch(setError(error.message));
+//     }
+//   );
+
+//   return unsubscribe; // Return unsubscribe function for cleanup
+// };
+
+
