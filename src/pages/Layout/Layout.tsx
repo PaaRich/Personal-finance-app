@@ -10,10 +10,23 @@ import EditPot from "../../components/EditPot";
 import AddMoney from "../Pots/AddMoney";
 import Withdraw from "../Pots/Withdraw";
 import BottomNav from "../../components/Navbar/BottomNav";
+import { ToastContainer } from "react-toastify";
+
 
 
 const Layout = () => {
-  const { open, openPopUp,openPot,openEditPopUp,openDelBudget,setOpenDelBudget,openEditPot,openDelPot,setOpenDelPot,openAddMoney,openWithdraw } = useContext(Context);
+  const {
+    open,
+    openPopUp,
+    openPot,
+    openEditPopUp,
+    openDelBudget,
+    setOpenDelBudget,
+    openEditPot,
+    openDelPot,
+    setOpenDelPot,
+    openAddMoney,
+    openWithdraw } = useContext(Context);
 
   //const [toggleColorDropdown, setToggleColorDropdown] = useState(false);
 
@@ -41,7 +54,23 @@ const Layout = () => {
         
         {openAddMoney && <AddMoney amount={455} target={2000} potName="Entertainment" />}
         
-        {openWithdraw && <Withdraw amount={50} target={100} potName="Savings"/>}
+      {openWithdraw && <Withdraw amount={50} target={100} potName="Savings" />}
+      
+      {/* alert */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+        theme="light"
+      />
+
+      {/* loader bar */}
+       
         
           {/* pages */}
       <div className={` transition-all duration-300 ease-in-out w-full grow overflow-y-auto`}>
