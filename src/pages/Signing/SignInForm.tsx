@@ -1,21 +1,31 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+
 const SignInForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [signInFormData, setSignInFormData] = useState({
+    email: "",
+    password: ""
+  })
+
+  const handleFormData = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setSignInFormData(prev=>({...prev,[name]:value}))
+  }
+
 
   return (
     <div className="flex items-center justify-center">
       <div className="bg-white p-5 w-[28rem]">
         <h2 className="text-2xl font-bold mb-6">Login</h2>
-        <form>
+        <form >
           <div className="mb-4">
             <label className="block text-lg font-medium mb-1">Email</label>
             <input
+              
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={signInFormData.email}
+              onChange={handleFormData}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
             />
           </div>
@@ -23,8 +33,8 @@ const SignInForm = () => {
             <label className="block text-lg font-medium mb-1">Password</label>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={signInFormData.password}
+              onChange={handleFormData}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
             />
           </div>
