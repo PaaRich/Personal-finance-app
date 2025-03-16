@@ -1,7 +1,8 @@
 import chroma from "chroma-js";
-import Select, { StylesConfig } from 'react-select';
+import Select, { StylesConfig, SingleValue, MultiValue } from 'react-select';
+import { useState } from "react";
 
-interface ColourOption {
+export interface ColourOption {
   readonly value: string;
   readonly label: string;
   readonly color: string;
@@ -9,7 +10,7 @@ interface ColourOption {
   readonly isDisabled?: boolean;
 }
 
-const colourOptions: readonly ColourOption[] = [
+const colourOptions: ColourOption[] = [
   { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
   { value: 'blue', label: 'Blue', color: '#0052CC'},
   { value: 'purple', label: 'Purple', color: '#5243AA' },
@@ -21,7 +22,6 @@ const colourOptions: readonly ColourOption[] = [
   { value: 'slate', label: 'Slate', color: '#253858' },
   { value: 'silver', label: 'Silver', color: '#666666' },
 ];
-
 
 const dot = (color = 'transparent') => ({
   alignItems: 'center',
@@ -75,33 +75,27 @@ const colourStyles: StylesConfig<ColourOption> = {
   singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
 };
 
-export const ColorDropdown = () => (
-  <Select
-    defaultValue={colourOptions[2]}
-    options={colourOptions}
-    styles={colourStyles}
-  />
-);
+export const ColorDropdown = ({ value, onChange }: { value: string; onChange: (value: ColourOption | null) => void; }) => {
+  const [selectedOption, setSelectedOption] = useState<ColourOption | null>(
+    value ? colourOptions.find(option => option.value === value) : null
+  );
 
-// import { useState,useRef } from "react";
-// const ColorDropdown = ({toggle,setToggle}:{toggle:boolean,setToggle: React.Dispatch<React.SetStateAction<boolean>>}) => {
-//   const [color, setColor] = useState();
-//   const colorRef = useRef(null);
-// console.log(colorRef)
-//   return (
-//     <div className="relative">
-//       <input onFocus={()=>setToggle(true)} className="w-full outline-0 p-3 border-2 rounded-[10px]" type="text" placeholder="Choose a theme.." value={color} onChange={()=>setColor(colorRef.current.childNodes[0])}/>
-//       {toggle &&
-//         <ul ref={colorRef} className="absolute top-full w-full bg-[whitesmoke] shadow-2xl mt-2 z-50 p-3 rounded-[5px]">
-          
-//         <li  className="flex items-center cursor-pointer" value={"#e32f"}>
-//           <div style={{backgroundColor:"#e32f"}} className="w-[10px] h-[10px] rounded-full mr-1"></div>
-//           <p>Red</p>
-//           </li>
-          
-//       </ul>}
-//     </div>
-//   )
-// }
+  const handleChange = (newValue: SingleValue<ColourOption> | MultiValue<ColourOption>) => {
+    if (newValue) {
+      setSelectedOption(newValue as SingleValue<ColourOption>);
+      onChange(newValue as SingleValue<ColourOption>); // Pass the selected value to the parent
+    } else {
+      setSelectedOption(null);
+      onChange(null); // Pass null if no value is selected
+    }
+  };
 
-// export default ColorDropdown;
+  return (
+    <Select
+      value={selectedOption}
+      options={colourOptions}
+      styles={colourStyles}
+      onChange={handleChange} // Handle value change
+    />
+  );
+};
