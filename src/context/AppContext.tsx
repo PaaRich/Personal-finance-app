@@ -2,8 +2,6 @@ import { Context } from "./Context";
 import { useState } from "react";
 
 
-
-
   const dataForChart = [
   { name: "Entertainment", value: 50, color: "#0088A9" },
   { name: "Bills", value: 750, color: "#6EC1E4" },
@@ -22,14 +20,16 @@ export const AppContext = ({ children }: React.PropsWithChildren) => {
   const [openAddMoney, setOpenAddMoney] = useState(false);
   const [openWithdraw, setOpenWithdraw] = useState(false);
 
-
+  // progressbar
+  // const [progress, setProgress] = useState(0);
+  
 
   
   return (
       <Context.Provider value={{
-          open,
-          setOpen,
-          openPopUp,
+      open,
+      setOpen,
+      openPopUp,
       setOpenPopUp,
       openEditPopUp,
       setOpenEditPopUp,
@@ -44,8 +44,9 @@ export const AppContext = ({ children }: React.PropsWithChildren) => {
       openAddMoney,
       setOpenAddMoney,
       openWithdraw,
-          setOpenWithdraw,
-      dataForChart
+      setOpenWithdraw,
+      dataForChart,
+      
       }}>
           {children}
       </Context.Provider>
