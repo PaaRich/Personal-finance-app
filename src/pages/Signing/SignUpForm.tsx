@@ -1,70 +1,77 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import {createUserWithEmailAndPassword} from "firebase/auth";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/auth";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-
 
 const SignUpForm = () => {
-  const [signUpFormValues, setSignUpFormValues] = useState({
-    name: "",
-    email: "",
-    password:""
-  });
- 
-
-  const handleFormData = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setSignUpFormValues((prev) => ({ ...prev, [name]: value }));
-  }
-
   const navigate = useNavigate();
+
+  const validationSchema = Yup.object({
+    name: Yup.string().min(3, "Name must be at least 3 characters").required("Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .matches(/[a-zA-Z]/, "Password must contain at least one letter")
+      .matches(/[0-9]/, "Password must contain at least one number")
+      .required("Password is required"),
+  });
+
+  const formik = useFormik({
+    initialValues: { name: "", email: "", password: "" },
+    validationSchema,
+    onSubmit: (values) => {
+      const { email, password } = values;
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredentials) => {
+          toast.success("Sign-up successfully");
+          navigate("overview");
+          console.log(userCredentials);
+        })
+        .catch((err) => console.log(err.message));
+    },
+  });
+
   return (
     <div className="flex items-center justify-center">
       <div className="bg-white p-5 w-[28rem]">
         <h2 className="text-2xl font-bold mb-6">Sign Up</h2>
-        <form onSubmit={(e: React.FormEvent) => {
-          e.preventDefault()
-          const { email, password } = signUpFormValues;
-          createUserWithEmailAndPassword(auth, email, password)
-            .then(userCredentials => {
-              toast.success("Sign-up successfully")
-              navigate("overview")
-              console.log(userCredentials);
-            })
-          .catch(err=>console.log(err.message))
-        }}>
+        <form onSubmit={formik.handleSubmit}>
           <div className="mb-4">
             <label className="block text-lg font-medium mb-1">Name</label>
             <input
               name="name"
               type="text"
-              value={signUpFormValues.name}
-              onChange={handleFormData}
+              value={formik.values.name}
+              onChange={formik.handleChange}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
             />
+            {formik.touched.name && formik.errors.name && <p className="text-red-500">{formik.errors.name}</p>}
           </div>
+
           <div className="mb-4">
             <label className="block text-lg font-medium mb-1">Email</label>
             <input
               name="email"
               type="email"
-              value={signUpFormValues.email}
-              onChange={handleFormData}
+              value={formik.values.email}
+              onChange={formik.handleChange}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
             />
+            {formik.touched.email && formik.errors.email && <p className="text-red-500">{formik.errors.email}</p>}
           </div>
+
           <div className="mb-4 relative">
             <label className="block text-lg font-medium mb-1">Create Password</label>
             <input
               name="password"
               type="password"
-              value={signUpFormValues.password}
-              onChange={handleFormData}
+              value={formik.values.password}
+              onChange={formik.handleChange}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
             />
-            <p className="text-sm text-gray-500 mt-1">Passwords must be at least 8 characters</p>
+            {formik.touched.password && formik.errors.password && <p className="text-red-500">{formik.errors.password}</p>}
           </div>
           <button
             type="submit"
