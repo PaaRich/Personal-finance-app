@@ -29,9 +29,14 @@ nav .active svg,
 .bottom-nav .active svg {
     color: var(--green);
 }
+
 nav ul li a:not(.active):hover,
-.bottom-nav a:not(.active):hover {
+.bottom-nav a:not(.active):hover,
+.log-out:hover{
     color:white;
+}
+.log-out{
+    cursor: pointer;
 }
 nav ul li a.active::before{
     content: " ";
@@ -42,6 +47,7 @@ nav ul li a.active::before{
     width: 4px;
     height: 100%;
 }
+
 .bottom-nav a.active::before{
     content: " ";
     background-color: var(--green);

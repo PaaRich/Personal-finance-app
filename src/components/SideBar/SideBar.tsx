@@ -8,16 +8,29 @@ import { FaSackDollar } from "react-icons/fa6";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
+import { CgLogOut } from "react-icons/cg";
+// import { signOut } from "firebase/auth";
+// import { auth } from "../../../firebase/auth";
+// import { toast } from "react-toastify";
+// onClick={() => {
+//               signOut(auth)
+//                 .then(() => {
+//                   toast.success("LogOut successfully")
+                  
+//                 })
+//                 .catch()
+//                   }}
+// import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
   const { open, setOpen } = useContext(Context);
+  // const navigate=useNavigate()
   return (
       <nav className={`${styles.sidebar_container} bg-[var(--deep-grey)] h-dvh rounded-r-xl`}>
           
               {/* logo */}
               <div className="p-6 h-[15%]">
                   {open?<h1 className=" text-[var(--lighter-grey)] text-3xl tracking-wider font-extrabold">finance</h1>:<h1 className=" text-[var(--lighter-grey)] text-3xl tracking-wider font-extrabold">F</h1>}
-                    
               </div>
 
               <div className="h-[85%] flex flex-col justify-between">
@@ -29,6 +42,8 @@ const SideBar = () => {
                   <li><NavLink to='budgets'><FaBalanceScaleRight size={28} className="mr-4"/><p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Budgets</p></NavLink></li>
                   <li><NavLink to='pots'><FaSackDollar size={28} className="mr-4"/><p className={`${open?"w-40":"w-0"} overflow-hidden duration-200`}>Pots</p></NavLink></li>
                   <li><NavLink to='recurring-bills'><FaMoneyCheckDollar size={28} className="mr-4"/><p className={`${open?"w-40":"w-0"} overflow-hidden duration-200 text-nowrap`}>Recurring Bills</p></NavLink></li>
+            <li className="log-out" >
+                    <div ><CgLogOut size={28} className="mr-4"/><p className={`${open?"w-40":"w-0"} overflow-hidden duration-200 text-nowrap`}>Log-out</p></div></li>
                 </ul>
               </div>
 

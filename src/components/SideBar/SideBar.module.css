@@ -1,5 +1,6 @@
 
-.sidebar_container li a{
+.sidebar_container li a,
+.sidebar_container li div{
     text-decoration: none;
     font-weight: bold;
     font-size: large;
