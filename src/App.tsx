@@ -8,6 +8,7 @@ import RecurringBills from "./pages/Recurring_bills/RecurringBills";
 import Signing from "./pages/Signing/Signing";
 import SignInForm from "./pages/Signing/SignInForm";
 import SignUpForm from "./pages/Signing/SignUpForm";
+import ProtectedRoutes from "./Utils/ProtectedRoutes";
 
 
 function App() {
@@ -18,16 +19,40 @@ function App() {
         <Route path="/" element={<Signing />} >
           <Route index element={ <SignUpForm/>} />
           <Route path="login" element={ <SignInForm/>} />
-          </Route>
+        </Route>
         
         
         {/* pages */}
         <Route  element={<Layout/>}>
-          <Route path="overview" element={<Overview />} />
-          <Route path="transactions" element={<Transaction/> } />
-          <Route path="budgets" element={<Budget/> } />
-          <Route path="pots" element={<Pots/> } />
-          <Route path="recurring-bills" element={<RecurringBills/> } />
+          <Route path="overview"
+            element={
+              <ProtectedRoutes>
+                <Overview />
+              </ProtectedRoutes>} />
+          
+          <Route path="transactions"
+            element={
+              <ProtectedRoutes>
+                <Transaction />
+              </ProtectedRoutes>} />
+          
+          <Route path="budgets"
+            element={
+              <ProtectedRoutes>
+                <Budget />
+              </ProtectedRoutes>} />
+          
+          <Route path="pots"
+            element={
+              <ProtectedRoutes>
+                <Pots />
+              </ProtectedRoutes>} />
+          
+          <Route path="recurring-bills"
+            element={
+              <ProtectedRoutes>
+                <RecurringBills />
+              </ProtectedRoutes>} />
         </Route>
 
       </Routes>

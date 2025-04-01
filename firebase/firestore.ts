@@ -1,5 +1,5 @@
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import app from "./firebaseConfig";
+import {app} from "./firebaseConfig";
 import { potItemProp } from "../types";
 import { ThunkAction } from "redux-thunk";
 import { AnyAction } from "redux";
