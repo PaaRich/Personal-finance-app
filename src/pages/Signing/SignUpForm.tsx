@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase/auth";
+import { auth } from "../../../firebase/firebaseConfig";
 import { toast } from "react-toastify";
 
 const SignUpForm = () => {
@@ -26,7 +26,7 @@ const SignUpForm = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
           toast.success("Sign-up successfully");
-          navigate("overview");
+          navigate("/overview");
           console.log(userCredentials);
         })
         .catch((err) => console.log(err.message));
