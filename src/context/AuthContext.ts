@@ -3,6 +3,7 @@ import {User} from "firebase/auth";
 
 interface AuthContextProps {
     user: User | null; // User object or null if not authenticated
+    // setUser:React.Dispatch<React.SetStateAction<User | null>>; // Function to set the user state
     login: (password:string,email:string) => void;
     logout: () => void;
 }

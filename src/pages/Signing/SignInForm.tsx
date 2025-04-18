@@ -4,13 +4,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 // import { signInWithEmailAndPassword } from "firebase/auth";
 // import { auth } from "../../../firebase/auth";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+// import { toast } from "react-toastify";
+// import { useNavigate } from "react-router-dom";
 import AuthConsumer from "../../context/AuthProvider";
 
 
 const SignInForm = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const auth = AuthConsumer();
   
   const validationSchema = Yup.object({
@@ -29,15 +29,16 @@ const SignInForm = () => {
     validationSchema,
     onSubmit: (values) => {
       const { email, password } = values;
-      (async () => {
-        try {
-          await auth?.login(email, password);
-          toast.success("Login successfully");
-          navigate("/overview");
-        } catch (error) {
-          console.error("Login failed", error);
-        }
-      })();
+      auth?.login(email, password)
+      // (async () => {
+      //   try {
+      //     await auth?.login(email, password);
+      //     toast.success("Login successfully");
+      //     navigate("/overview");
+      //   } catch (error) {
+      //     console.error("Login failed", error);
+      //   }
+      // })();
     },
   });
 

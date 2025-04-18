@@ -2,21 +2,29 @@ import { AuthContext } from "./AuthContext";
 import { useState, useContext } from "react";
 import { signInWithEmailAndPassword,signOut,User } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 //useAuth that provides the login and logout functions
 function useAuth() {
-  const [user, setUser] = useState<User|null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate();
 
   return {
     user,
-
+// setUser,
     //login:  // login function that takes email and password as arguments
     async login(email: string, password: string) {
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        toast.success("Login successfully");
+        setTimeout(() => {
+          navigate("/overview", { replace: true });
+        },2000)
         setUser(userCredential.user);
       }catch (error) {
         console.error("Login failed", error);
+        toast.error("Login failed. Please check your credentials.");
       }
     
     },

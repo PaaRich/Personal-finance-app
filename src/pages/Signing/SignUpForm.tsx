@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/firebaseConfig";
 import { toast } from "react-toastify";
+// import AuthConsumer from "../../context/AuthProvider";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
-
+  
+// const { setUser } = AuthConsumer();
   const validationSchema = Yup.object({
     name: Yup.string().min(3, "Name must be at least 3 characters").required("Name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -25,8 +27,13 @@ const SignUpForm = () => {
       const { email, password } = values;
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
-          toast.success("Sign-up successfully");
-          navigate("/overview");
+          // setUser(userCredentials.user);
+          toast.success("Account created successfully");
+          setTimeout(() => {
+            navigate("/login")
+          }
+          , 2000);
+          // navigate("/login");
           console.log(userCredentials);
         })
         .catch((err) => console.log(err.message));
