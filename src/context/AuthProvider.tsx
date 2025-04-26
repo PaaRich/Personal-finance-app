@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 //useAuth that provides the login and logout functions
 function useAuth() {
   const [user, setUser] = useState<User | null>(null);
+  
   const navigate = useNavigate();
 
   return {
@@ -37,7 +38,6 @@ function useAuth() {
       } catch (error) {
         console.error("Logout failed", error);
       }
-      
     },
   };
 }

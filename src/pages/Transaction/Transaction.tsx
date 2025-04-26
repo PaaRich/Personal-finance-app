@@ -16,6 +16,8 @@ const Transaction = () => {
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState<string>("latest")
   const [category, setCategory] = useState<string>('all transactions');
+  const [page, setPage] = useState<number>(1);
+  const limit = 10;
   
   const dispatch = useDispatch<AppDispatch>();
  
@@ -23,7 +25,13 @@ const Transaction = () => {
   
   console.log(isLoading,error,data)
 
-  
+  const startIndex = (page - 1) * limit;
+  const endIndex = startIndex + limit;
+  const itemsToDisplay = data.transactions?.slice(startIndex, endIndex);
+console.log(itemsToDisplay.length)
+  const paginate = (pageNumber:number) => {
+    setPage(pageNumber);
+  }
 
   useEffect(() => {
     dispatch(fetchTransaction());
@@ -95,13 +103,13 @@ const Transaction = () => {
               </tr>
             </thead>
             <tbody>
-              {data.transactions?.map((aTransaction,index) => <TransactionDetail theKey={index} img={profilePic} name={aTransaction.name} category={aTransaction.category} trancDate={aTransaction.date.split("T")[0]} amount={aTransaction.amount} />)}
+              {itemsToDisplay?.map((aTransaction,index) => <TransactionDetail theKey={index} img={profilePic} name={aTransaction.name} category={aTransaction.category} trancDate={aTransaction.date.split("T")[0]} amount={aTransaction.amount} />)}
             </tbody>
           </table>
         </div>
 
         {/* pagination */}
-        <Pagination/>
+        <Pagination totalPages={data.transactions.length} limit={limit} paginate={paginate}/>
       </div>
     </div>
   )

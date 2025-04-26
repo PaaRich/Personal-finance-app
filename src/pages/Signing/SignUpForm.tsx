@@ -36,7 +36,10 @@ const SignUpForm = () => {
           // navigate("/login");
           console.log(userCredentials);
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) => {
+          toast.error(err.message);
+          console.log("Error creating account", err.message);
+        });
     },
   });
 
@@ -54,7 +57,7 @@ const SignUpForm = () => {
               onChange={formik.handleChange}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
             />
-            {formik.touched.name && formik.errors.name && <p className="text-red-500">{formik.errors.name}</p>}
+            {formik.touched.name && formik.errors.name && <p className="text-red-500 text-sm">{formik.errors.name}</p>}
           </div>
 
           <div className="mb-4">
@@ -66,7 +69,7 @@ const SignUpForm = () => {
               onChange={formik.handleChange}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
             />
-            {formik.touched.email && formik.errors.email && <p className="text-red-500">{formik.errors.email}</p>}
+            {formik.touched.email && formik.errors.email && <p className="text-red-500 text-sm">{formik.errors.email}</p>}
           </div>
 
           <div className="mb-4 relative">
@@ -78,7 +81,7 @@ const SignUpForm = () => {
               onChange={formik.handleChange}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
             />
-            {formik.touched.password && formik.errors.password && <p className="text-red-500">{formik.errors.password}</p>}
+            {formik.touched.password && formik.errors.password && <p className="text-red-500 text-sm">{formik.errors.password}</p>}
           </div>
           <button
             type="submit"
