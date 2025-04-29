@@ -109,7 +109,7 @@ console.log(itemsToDisplay.length)
         </div>
 
         {/* pagination */}
-        <Pagination totalPages={data.transactions.length} limit={limit} paginate={paginate}/>
+        <Pagination totalPages={data.transactions?.length} limit={limit} paginate={paginate}/>
       </div>
     </div>
   )
