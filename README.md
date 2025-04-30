@@ -1,50 +1,76 @@
-# React + TypeScript + Vite
+# 💰 Personal Finance App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and user-friendly **Personal Finance App** that helps you manage your income, expenses, savings, and bills in one place.
 
-Currently, two official plugins are available:
+## 📌 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This app allows users to gain insight into their financial life by tracking transactions, setting budgets, saving in pots, and managing recurring bills. The application features an intuitive interface for easy navigation and visualization of financial data.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 📂 Features
 
-- Configure the top-level `parserOptions` property like this:
+### 📊 Overview  
+Displays a summary of your financial activities including:
+- Current balance
+- Total income and expenses
+- Recent transactions
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 📑 Transactions  
+- View all your transactions in one place  
+- Sort by date, amount, or type  
+- Filter by category (e.g., food, transport, shopping) or date range  
+
+### 🎯 Budgets  
+- Set monthly or category-based budgets  
+- Track how much you've spent vs how much is left  
+- Get visual feedback when you're close to exceeding your budget  
+
+### 🏦 Pots  
+- Save money into separate pots (e.g., vacation, emergency, goals)  
+- View current savings per pot  
+- Easily transfer money between pots  
+
+### 🔁 Recurring Bills  
+- Track monthly/weekly bills like rent, subscriptions, utilities  
+- Get reminders before due dates  
+- Avoid surprises by visualizing upcoming recurring expenses  
+
+---
+
+## 🚀 Tech Stack
+
+- **Frontend**: React (TypeScript), Tailwind CSS  
+- **State Management**: Redux Toolkit  
+- **Routing**: React Router  
+- **Testing**: React Testing Library, Vitest  
+- **Backend**: Firebase (or replace with your backend if different)  
+
+---
+
+## 🛠️ Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/PaaRich/personal-finance-app.git
+
+# Navigate into the project directory
+cd personal-finance-app
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## ✅ Coming Soon
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Dark mode  
+- Export transactions to CSV  
+- Income tracking  
+- Notifications system  
+
+---
