@@ -4,10 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/firebaseConfig";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { BeatLoader } from "react-spinners";
 // import AuthConsumer from "../../context/AuthProvider";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   
 // const { setUser } = AuthConsumer();
   const validationSchema = Yup.object({
@@ -25,8 +28,10 @@ const SignUpForm = () => {
     validationSchema,
     onSubmit: (values) => {
       const { email, password } = values;
+      setLoading(true);
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
+          setLoading(false);
           // setUser(userCredentials.user);
           toast.success("Account created successfully");
           setTimeout(() => {
@@ -87,7 +92,7 @@ const SignUpForm = () => {
             type="submit"
             className="w-full p-2 bg-black text-white rounded-lg hover:bg-gray-800 transition cursor-pointer"
           >
-            Create Account
+            {loading ? <BeatLoader color="#fff" size={10} loading={loading} /> : "Create Account"}
           </button>
         </form>
         <p className="text-center text-sm mt-4">

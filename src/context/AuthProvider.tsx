@@ -19,9 +19,9 @@ function useAuth() {
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         toast.success("Login successfully");
-        setTimeout(() => {
+        
           navigate("/overview", { replace: true });
-        },2000)
+       
         setUser(userCredential.user);
       }catch (error) {
         console.error("Login failed", error);

@@ -7,13 +7,16 @@ import * as Yup from "yup";
 // import { toast } from "react-toastify";
 // import { useNavigate } from "react-router-dom";
 import AuthConsumer from "../../context/AuthProvider";
+import { useState } from "react";
+import {BeatLoader} from "react-spinners";
 
 
 const SignInForm = () => {
   // const navigate = useNavigate();
   const auth = AuthConsumer();
+  const [loading, setLoading] = useState(false);
   
-  const validationSchema = Yup.object({
+  const validationSchemaIn = Yup.object({
       // name: Yup.string().min(3, "Name must be at least 3 characters").required("Name is required"),
       email: Yup.string().email("Invalid email").required("Email is required"),
       password: Yup.string()
@@ -26,10 +29,12 @@ const SignInForm = () => {
   
   const formik = useFormik({
     initialValues: { email: "", password: "" },
-    validationSchema,
-    onSubmit: (values) => {
+    validationSchema: validationSchemaIn,
+    onSubmit: async (values) => {
+      setLoading(true);
       const { email, password } = values;
-      auth?.login(email, password)
+      await auth?.login(email, password)
+      setLoading(false);
       // (async () => {
       //   try {
       //     await auth?.login(email, password);
@@ -72,7 +77,9 @@ const SignInForm = () => {
             type="submit"
             className="w-full p-2 bg-black text-white rounded-lg hover:bg-gray-800 transition cursor-pointer"
           >
-            Login
+            {loading ? 
+              <BeatLoader color="#fff" size={10} loading={ loading } />
+             : "Login"}
           </button>
         </form>
         <p className="text-center text-sm mt-4">

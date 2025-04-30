@@ -14,44 +14,83 @@ import { fetchTransaction } from "../../redux/Features/transactionSlice";
 
 const Transaction = () => {
   const [search, setSearch] = useState('');
-  const [sort, setSort] = useState<string>("latest")
+  const [sort, setSort] = useState<string>("latest");
   const [category, setCategory] = useState<string>('all transactions');
   const [page, setPage] = useState<number>(1);
-  const limit = 10;
-  
-  const dispatch = useDispatch<AppDispatch>();
- 
-  const {isLoading,error,data} = useSelector((state: RootState) => state.transactions);
-  
-  console.log(isLoading,error,data)
 
+  const limit = 10;
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { isLoading, error, data } = useSelector((state: RootState) => state.transactions);
+
+  console.log(isLoading, error, data);
+
+  // Filter transactions by category
+  const filteredTransactions = data.transactions?.filter((transaction) => {
+    if (category === 'all transactions') return true; // Show all transactions
+    return transaction.category.toLowerCase() === category.toLowerCase();
+  });
+
+  // Sort transactions
+  const sortedTransactions = filteredTransactions?.sort((a, b) => {
+    if (sort === "latest") {
+      return new Date(b.date).getTime() - new Date(a.date).getTime(); // Sort by latest date
+    } else if (sort === "A to Z") {
+      return a.name.localeCompare(b.name); // Sort alphabetically (A to Z)
+    } else if (sort === "Z to A") {
+      return b.name.localeCompare(a.name); // Sort alphabetically (Z to A)
+    } else if (sort === "highest") {
+      return b.amount - a.amount; // Sort by highest amount
+    } else if (sort === "lowest") {
+      return a.amount - b.amount; // Sort by lowest amount
+    }
+    return 0;
+  });
+
+  // Pagination logic
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
-  const itemsToDisplay = data.transactions?.slice(startIndex, endIndex);
-console.log(itemsToDisplay.length)
-  const paginate = (pageNumber:number) => {
+  const itemsToDisplay = sortedTransactions?.slice(startIndex, endIndex);
+
+  const paginate = (pageNumber: number) => {
     setPage(pageNumber);
-  }
+  };
 
   useEffect(() => {
     dispatch(fetchTransaction());
-  },[dispatch])
+  }, [dispatch]);
 
   return (
     <div>
-      <Navbar title="Transaction"/>
+      <Navbar title="Transaction" />
       <div className="bg-white rounded-2xl p-3 md:p-5">
         <div className="flex items-center justify-between mb-10 w-full">
           <form action="">
-            <div className="flex items-center justify-between p-3 border-2 rounded-[10px] text-[18px] w-full lg:w-[320px]"><input className="outline-0 w-[90%] " type="text" placeholder="Search transaction" value={search} onChange={(e)=>setSearch(e.target.value)}/><AiOutlineSearch size={23} /></div>
+            <div className="flex items-center justify-between p-3 border-2 rounded-[10px] text-[18px] w-full lg:w-[320px]">
+              <input
+                className="outline-0 w-[90%]"
+                type="text"
+                placeholder="Search transaction"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <AiOutlineSearch size={23} />
+            </div>
           </form>
 
           <div className="flex items-center gap-x-2 sm:gap-x-6">
-               {/* sort */}
+            {/* Sort */}
             <div>
               <div className="hidden md:block">
-                <label className="lg:mr-3 mr-1" htmlFor="">Sort by</label>
-                <select className="outline-0 border-2 p-3 rounded-[10px] text-[18px]" name="sort" value={sort} onChange={(e)=>setSort(e.target.value)}>
+                <label className="lg:mr-3 mr-1" htmlFor="">
+                  Sort by
+                </label>
+                <select
+                  className="outline-0 border-2 p-3 rounded-[10px] text-[18px]"
+                  name="sort"
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value)}
+                >
                   <option value="latest">latest</option>
                   <option value="A to Z">A to Z</option>
                   <option value="Z to A">Z to A</option>
@@ -60,38 +99,42 @@ console.log(itemsToDisplay.length)
                 </select>
               </div>
 
-              {/* sort for phone */}
+              {/* Sort for phone */}
               <div>
-                <PiSortAscendingFill size={25} className="block md:hidden"/>
+                <PiSortAscendingFill size={25} className="block md:hidden" />
               </div>
             </div>
 
-            {/* filter */}
+            {/* Filter */}
             <div>
               <div className="hidden md:block">
-              <label className="lg:mr-3 mr-1" htmlFor="">Category</label>
-              <select className="outline-0 border-2 p-3 rounded-[10px] text-[18px]" name="category" value={category} onChange={(e)=>setCategory(e.target.value)}>
-                <option value="all transactions">All transactions</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="bills">Bills</option>
-                <option value="groceries">Groceries</option>
-                <option value="dining Out">Dining Out</option>
-                <option value="Transportation">Transportation</option>
-              </select>
+                <label className="lg:mr-3 mr-1" htmlFor="">
+                  Category
+                </label>
+                <select
+                  className="outline-0 border-2 p-3 rounded-[10px] text-[18px]"
+                  name="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  <option value="all transactions">All transactions</option>
+                  <option value="entertainment">Entertainment</option>
+                  <option value="bills">Bills</option>
+                  <option value="groceries">Groceries</option>
+                  <option value="dining Out">Dining Out</option>
+                  <option value="Transportation">Transportation</option>
+                </select>
               </div>
-              
-              {/* filter for phone */}
+
+              {/* Filter for phone */}
               <div>
-                <FaFilter size={25} className="block md:hidden"/>
+                <FaFilter size={25} className="block md:hidden" />
               </div>
             </div>
-           
           </div>
-         
-          
         </div>
-        
-        {/* table */}
+
+        {/* Table */}
         <div className="min-w-[300px] max-md:overflow-x-scroll">
           <table className="w-full">
             <thead>
@@ -103,16 +146,29 @@ console.log(itemsToDisplay.length)
               </tr>
             </thead>
             <tbody>
-              {itemsToDisplay?.map((aTransaction,index) => <TransactionDetail theKey={index} img={profilePic} name={aTransaction.name} category={aTransaction.category} trancDate={aTransaction.date.split("T")[0]} amount={aTransaction.amount} />)}
+              {itemsToDisplay?.map((aTransaction, index) => (
+                <TransactionDetail
+                  theKey={index}
+                  img={profilePic}
+                  name={aTransaction.name}
+                  category={aTransaction.category}
+                  trancDate={aTransaction.date.split("T")[0]}
+                  amount={aTransaction.amount}
+                />
+              ))}
             </tbody>
           </table>
         </div>
 
-        {/* pagination */}
-        <Pagination totalPages={data.transactions?.length} limit={limit} paginate={paginate}/>
+        {/* Pagination */}
+        <Pagination
+          totalPages={(filteredTransactions || []).length}
+          limit={limit}
+          paginate={paginate}
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Transaction
+export default Transaction;
