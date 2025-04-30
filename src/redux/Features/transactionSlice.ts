@@ -20,7 +20,10 @@ export const fetchTransaction = createAsyncThunk(
         return data;
         }
         catch (error:unknown) {
-            return rejectWithValue(error.message||"something went wrong")
+            if (error instanceof Error) {
+                return rejectWithValue(error.message || "something went wrong");
+            }
+            return rejectWithValue("something went wrong");
         }   
 });
 

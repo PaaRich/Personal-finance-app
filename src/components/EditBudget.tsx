@@ -31,7 +31,10 @@ const EditBudget = () => {
                   
                   <div>
                     <label htmlFor="category">Theme</label>
-                    <ColorDropdown />
+                    <ColorDropdown 
+                      value="default-color" 
+                      onChange={(value) => console.log("Selected color:", value)} 
+                    />
                   </div>
     </PopUp>
   )

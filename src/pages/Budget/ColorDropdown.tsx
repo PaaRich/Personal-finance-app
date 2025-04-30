@@ -77,7 +77,7 @@ const colourStyles: StylesConfig<ColourOption> = {
 
 export const ColorDropdown = ({ value, onChange }: { value: string; onChange: (value: ColourOption | null) => void; }) => {
   const [selectedOption, setSelectedOption] = useState<ColourOption | null>(
-    value ? colourOptions.find(option => option.value === value) : null
+    value ? colourOptions.find(option => option.value === value) ?? null : null
   );
 
   const handleChange = (newValue: SingleValue<ColourOption> | MultiValue<ColourOption>) => {

@@ -16,7 +16,7 @@ const potsCollectionRef = collection(db, 'Pots');
 // add pot
 const addPotFunc = (item: potItemProp): ThunkAction<void, RootState, unknown, AnyAction> => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    return async (dispatch) => {
+    return async () => {
         try {
              await addDoc(potsCollectionRef, item);
             toast.success("Pot added successfully");

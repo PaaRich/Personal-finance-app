@@ -1,6 +1,11 @@
 import PopUp from "./PopUp"
 import { ColorDropdown } from "../pages/Budget/ColorDropdown";
-import { useContext,useState } from "react";
+import { useContext, useState } from "react";
+
+type ColourOption = {
+  value: string;
+  label: string;
+};
 import { Context } from "../context/Context";
 
 
@@ -33,7 +38,10 @@ const AddBudget = () => {
           
           <div>
             <label htmlFor="category">Theme</label>
-            <ColorDropdown />
+            <ColorDropdown 
+              value={budgetAmount || ""} 
+              onChange={(value: ColourOption | null) => setBudgetAmount(value?.value || "")} 
+            />
           </div>
         </PopUp>
   )

@@ -25,7 +25,10 @@ const EditPot = () => {
           
           <div>
             <label htmlFor="category">Theme</label>
-            <ColorDropdown />
+            <ColorDropdown 
+              value="" 
+              onChange={(value) => console.log(value)} 
+            />
           </div>
         </PopUp>
   )
