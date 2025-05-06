@@ -34,10 +34,8 @@ const SignUpForm = () => {
           setLoading(false);
           // setUser(userCredentials.user);
           toast.success("Account created successfully");
-          setTimeout(() => {
             navigate("/login")
-          }
-          , 2000);
+          
           // navigate("/login");
           console.log(userCredentials);
         })

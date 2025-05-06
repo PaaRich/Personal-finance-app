@@ -27,6 +27,8 @@ interface ContextProp{
     setOpenAddMoney: React.Dispatch<React.SetStateAction<boolean>>;
     openWithdraw: boolean;
     setOpenWithdraw: React.Dispatch<React.SetStateAction<boolean>>;
+    selected: unknown;
+    setSelected: React.Dispatch<React.SetStateAction<unknown>>;
 }
 //how to define the context
 export const Context = createContext<ContextProp>({} as ContextProp);

@@ -52,3 +52,11 @@ export interface potItemProp{
     target: number;
     theme: string;
 }
+
+export interface budgetItemProp{
+    category: string;
+    maxSpend: number;
+    theme: string;
+}
+
+

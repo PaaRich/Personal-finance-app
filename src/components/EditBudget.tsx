@@ -13,7 +13,7 @@ const EditBudget = () => {
       submitFn={() => { console.log("Saved Changes") }}
       closeFn={()=>setOpenEditPopUp(false)}
     >
-        <div>
+                  <div>  
                     <label htmlFor="category">Budget Category</label>
                     <select className="w-full border-2 rounded-[10px] p-3 outline-0 cursor-pointer mt-2" name="category" id="">
                       <option value="entertainment">Entertainment</option>

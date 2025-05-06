@@ -19,6 +19,7 @@ export const AppContext = ({ children }: React.PropsWithChildren) => {
   const [openPot, setOpenPot] = useState<boolean>(false);
   const [openAddMoney, setOpenAddMoney] = useState(false);
   const [openWithdraw, setOpenWithdraw] = useState(false);
+  const [selected,setSelected] = useState<unknown>(null);
 
   // progressbar
   // const [progress, setProgress] = useState(0);
@@ -46,7 +47,8 @@ export const AppContext = ({ children }: React.PropsWithChildren) => {
       openWithdraw,
       setOpenWithdraw,
       dataForChart,
-      
+      selected,
+      setSelected,
       }}>
           {children}
       </Context.Provider>

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { initialStateProp,dataProp } from "../../../types";
+import { initialStateProp, dataProp } from "../../../types";
+
 
 const initialState:initialStateProp = {
     isLoading: false,
@@ -17,7 +18,8 @@ export const fetchTransaction = createAsyncThunk(
                 throw new Error("Couldn't fetch")
             }
         const data = await response.json();
-        return data;
+            return data;
+            
         }
         catch (error:unknown) {
             if (error instanceof Error) {
