@@ -8,8 +8,8 @@ import { toast } from "react-toastify";
 
 const db = getFirestore(app);
 
-const budgetCollectionRef = collection(db, "Budget");
-const potsCollectionRef = collection(db, 'Pot');
+const budgetCollectionRef = collection(db, "Budgets");
+const potsCollectionRef = collection(db, 'Pots');
 
 
 
