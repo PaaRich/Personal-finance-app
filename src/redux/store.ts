@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import transactionReducer from "./Features/transactionSlice.ts";
 import potsReducer from "./Features/PotsSlice.ts";
+import budgetReducer from "./Features/BudgetSlice.ts";
 
 export const store = configureStore({
   reducer: {
     transactions: transactionReducer,
-    pots:potsReducer
+    pots: potsReducer,
+    budgets:budgetReducer,
   },
 });
 

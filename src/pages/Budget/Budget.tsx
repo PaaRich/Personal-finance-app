@@ -1,13 +1,40 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Button from "../../components/Button/Button";
 import DonutChart from "../../components/Charts/PieChart";
-import { useContext } from "react";
+import { useContext,useEffect } from "react";
 import { Context } from "../../context/Context";
 import BudgetCard from "./BudgetCard";
-
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { AppDispatch } from "../../redux/store";
+import { useDispatch } from "react-redux";
+import { listenToBudgets } from "../../redux/Features/BudgetSlice";
+import Skeleton from "react-loading-skeleton";
 
 const Budget = () => {
   const { dataForChart, openPopUp, setOpenPopUp } = useContext(Context);
+
+  const budgets = useSelector((state: RootState) => state.budgets)
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    // Fetch pots data when the component mounts 
+    dispatch(listenToBudgets());
+  }
+    , [dispatch]);
+  
+  if (budgets.isLoading) {
+    return (
+      <div>
+        <Skeleton count={5} height={300}  className="my-3 w-[90%] mx-auto" />
+      </div>
+    )
+  }
+  if (budgets.error) {
+    return (
+      <div>error</div>
+    )
+  }
  
   
   return (
@@ -47,11 +74,11 @@ const Budget = () => {
 
         {/* cards */}
         <div className="grow w-auto flex flex-col gap-y-5">
-          {/* {data.budgets?.map((aBudget) => <BudgetCard color={ aBudget.theme} label={aBudget.category} amount={aBudget.maximum} spent={50/100*aBudget.maximum} />)} */}
-          <BudgetCard color="#277c78" label="Entertainment" amount={200} spent={150}/>
+          {budgets.data?.map((aBudget) => <BudgetCard color={ aBudget.theme} label={aBudget.category} amount={aBudget.maximum} spent={50/100*aBudget.maximum} />)}
+          {/* <BudgetCard color="#277c78" label="Entertainment" amount={200} spent={150}/>
           <BudgetCard color="#82c9d7" label="Bills" amount={350} spent={50}/>
           <BudgetCard color="#60a5fa" label="Dinning Out" amount={250} spent={70}/>
-          <BudgetCard color="#934767" label="Personal Care" amount={320} spent={80}/>
+          <BudgetCard color="#934767" label="Personal Care" amount={320} spent={80}/> */}
         </div>
       </div>
     </div>

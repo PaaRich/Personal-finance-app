@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { addBudgetFunc } from "../../firebase/firestore";
 import { AppDispatch } from "../redux/store";
 import { useDispatch } from "react-redux";
+import { BeatLoader } from "react-spinners";
 
 type ColourOption = {
   value: string;
@@ -19,6 +20,7 @@ interface BudgetFormValues {
 
 const AddBudget = () => {
   const { setOpenPopUp } = useContext(Context);
+  const [loading,setLoading] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
 
   const [budgetFormValues, setBudgetFormValues] = useState({
@@ -36,17 +38,31 @@ const AddBudget = () => {
     <PopUp
           label="Add New Budget"
           description="Lorem ipsum dolor sit amet consectetur quod illo enim impedit dolores."
-          btnLabel="Add Budget"
-          submitFn={(e:React.FormEvent<HTMLFormElement>) => {
-              e.preventDefault();
-              console.log("submitted");
-              dispatch(addBudgetFunc(budgetFormValues))
-            }}
+          btnLabel={loading?<BeatLoader color="#fff" size={10} /> : "Add Budget"}
+      submitFn={async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setLoading(true)
+        try {
+          await dispatch(addBudgetFunc(budgetFormValues))
+          setLoading(false)
+          setBudgetFormValues({
+            category: "",
+            maxSpend: 0,
+            theme: ""
+          } as BudgetFormValues);
+          setOpenPopUp(false)
+        }
+        catch (error) {
+          setLoading(false)
+          console.error("Error adding budget:", error);
+        }
+      }}
           closeFn={()=>setOpenPopUp(false)}
         >
           <div>
             <label htmlFor="category">Budget Category</label>
-            <select className="w-full border-2 rounded-[10px] p-3 outline-0 cursor-pointer mt-2" name="category" id="" value={budgetFormValues.category} onChange={handleAddBudgetFormChange}>
+        <select className="w-full border-2 rounded-[10px] p-3 outline-0 cursor-pointer mt-2" name="category" id="" value={budgetFormValues.category} onChange={handleAddBudgetFormChange}>
+              <option value="" disabled>Select Category</option>
               <option value="entertainment">Entertainment</option>
               <option value="bills">Bills</option>
               <option value="groceries">Groceries</option>

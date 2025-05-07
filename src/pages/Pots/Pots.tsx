@@ -7,6 +7,7 @@ import { RootState} from "../../redux/store";
 import { useSelector,useDispatch } from "react-redux";
 import { listenToPots } from "../../redux/Features/PotsSlice";
 import { AppDispatch } from "../../redux/store";
+import Skeleton from "react-loading-skeleton";
 
 const Pots = () => {
   const { setOpenPot } = useContext(Context);
@@ -21,7 +22,9 @@ const Pots = () => {
   
   if (pots.isLoading) {
     return (
-      <div>Loading</div>
+      <div>
+        <Skeleton count={5} height={300} duration={4} className="my-3 w-[90%] mx-auto" />
+      </div>
     )
   }
 
