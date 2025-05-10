@@ -1,5 +1,10 @@
 
-type SingleTransactionProps = Record<"name" | "amount" | "transactionDate" | "profilePic", string>;
+type SingleTransactionProps = {
+    name: string;
+    amount: number;
+    transactionDate: string;
+    profilePic: string;
+}
 
 const SingleTransaction = ({ name, amount, transactionDate, profilePic }:SingleTransactionProps) => {
     const isProfit = true;

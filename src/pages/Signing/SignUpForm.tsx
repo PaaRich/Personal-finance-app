@@ -11,6 +11,7 @@ import { BeatLoader } from "react-spinners";
 const SignUpForm = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   
 // const { setUser } = AuthConsumer();
   const validationSchema = Yup.object({
@@ -40,7 +41,10 @@ const SignUpForm = () => {
           console.log(userCredentials);
         })
         .catch((err) => {
-          toast.error(err.message);
+          toast.error(err.message.toString());
+          setLoading(false);
+          setError(err.message);
+          formik.resetForm();
           console.log("Error creating account", err.message);
         });
     },
@@ -49,6 +53,7 @@ const SignUpForm = () => {
   return (
     <div className="flex items-center justify-center">
       <div className="bg-white p-5 w-[28rem]">
+        {error =="Firebase: Error (auth/email-already-in-use)." && <p className="text-red-500 text-center">Account already exist</p>}
         <h2 className="text-2xl font-bold mb-6">Sign Up</h2>
         <form onSubmit={formik.handleSubmit}>
           <div className="mb-4">
@@ -59,6 +64,7 @@ const SignUpForm = () => {
               value={formik.values.name}
               onChange={formik.handleChange}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
+              placeholder="eg. John Doe"
             />
             {formik.touched.name && formik.errors.name && <p className="text-red-500 text-sm">{formik.errors.name}</p>}
           </div>
@@ -71,6 +77,7 @@ const SignUpForm = () => {
               value={formik.values.email}
               onChange={formik.handleChange}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
+              placeholder="example@gmail.com"
             />
             {formik.touched.email && formik.errors.email && <p className="text-red-500 text-sm">{formik.errors.email}</p>}
           </div>
@@ -83,6 +90,7 @@ const SignUpForm = () => {
               value={formik.values.password}
               onChange={formik.handleChange}
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
+              placeholder="password@123"
             />
             {formik.touched.password && formik.errors.password && <p className="text-red-500 text-sm">{formik.errors.password}</p>}
           </div>

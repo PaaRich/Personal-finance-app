@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 //useAuth that provides the login and logout functions
 function useAuth() {
   const [user, setUser] = useState<User | null>(null);
+  const [error,setError] = useState("");
   
   const navigate = useNavigate();
 
@@ -25,7 +26,9 @@ function useAuth() {
         setUser(userCredential.user);
       }catch (error) {
         console.error("Login failed", error);
-        toast.error("Login failed. Please check your credentials.");
+        if (error instanceof Error) {
+          setError(error.message);
+        }
       }
     
     },
@@ -35,10 +38,14 @@ function useAuth() {
       try {
         await signOut(auth);
     setUser(null);
-      } catch (error) {
+      } catch (error:unknown) {
         console.error("Logout failed", error);
+        if (error instanceof Error) {
+          setError(error.message);
+        }
       }
     },
+    error,
   };
 }
 

@@ -16,6 +16,7 @@ const SignInForm = () => {
   const auth = AuthConsumer();
   const [loading, setLoading] = useState(false);
   
+  
   const validationSchemaIn = Yup.object({
       // name: Yup.string().min(3, "Name must be at least 3 characters").required("Name is required"),
       email: Yup.string().email("Invalid email").required("Email is required"),
@@ -32,18 +33,14 @@ const SignInForm = () => {
     validationSchema: validationSchemaIn,
     onSubmit: async (values) => {
       setLoading(true);
-      const { email, password } = values;
-      await auth?.login(email, password)
-      setLoading(false);
-      // (async () => {
-      //   try {
-      //     await auth?.login(email, password);
-      //     toast.success("Login successfully");
-      //     navigate("/overview");
-      //   } catch (error) {
-      //     console.error("Login failed", error);
-      //   }
-      // })();
+      try {
+        const { email, password } = values;
+        await auth?.login(email, password)
+        setLoading(false);
+      } catch (error) {
+        console.error("Login failed", error);
+        setLoading(false);
+      }
     },
   });
 
@@ -51,6 +48,7 @@ const SignInForm = () => {
   return (
     <div className="flex items-center justify-center">
       <div className="bg-white p-5 w-[28rem]">
+        {auth.error=="Firebase: Error (auth/invalid-credential)." && <p className="text-red-500 text-center">Incorrect email or password</p>}
         <h2 className="text-2xl font-bold mb-6">Login</h2>
         <form onSubmit={formik.handleSubmit}> 
           <div className="mb-4">
@@ -61,7 +59,9 @@ const SignInForm = () => {
               value={formik.values.email}
               onChange={formik.handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
+              placeholder="example123@gmail.com"
             />
+            {formik.touched.email && formik.errors.email && <p className="text-red-500 text-sm">{formik.errors.email}</p>}
           </div>
           <div className="mb-4 relative">
             <label className="block text-lg font-medium mb-1">Password</label>
@@ -71,7 +71,9 @@ const SignInForm = () => {
              value={formik.values.password}
               onChange={formik.handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
+              placeholder="password@123"
             />
+            {formik.touched.password && formik.errors.password && <p className="text-red-500 text-sm">{formik.errors.password}</p>}
           </div>
           <button
             type="submit"
