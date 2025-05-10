@@ -26,7 +26,8 @@ const AddBudget = () => {
   const [budgetFormValues, setBudgetFormValues] = useState({
     category: "",
     maxSpend: 0,
-    theme: ""
+    //the theme must have a default value
+    theme: "blue"
   } as BudgetFormValues);
 
   const handleAddBudgetFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -42,6 +43,7 @@ const AddBudget = () => {
       submitFn={async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true)
+
         try {
           await dispatch(addBudgetFunc(budgetFormValues))
           setLoading(false)
@@ -61,7 +63,7 @@ const AddBudget = () => {
         >
           <div>
             <label htmlFor="category">Budget Category</label>
-        <select className="w-full border-2 rounded-[10px] p-3 outline-0 cursor-pointer mt-2" name="category" id="" value={budgetFormValues.category} onChange={handleAddBudgetFormChange}>
+        <select className="w-full border-2 rounded-[10px] p-3 outline-0 cursor-pointer mt-2" name="category" id="" value={budgetFormValues.category}required onChange={handleAddBudgetFormChange}>
               <option value="" disabled>Select Category</option>
               <option value="entertainment">Entertainment</option>
               <option value="bills">Bills</option>
@@ -73,13 +75,12 @@ const AddBudget = () => {
           
           <div className="my-4">
             <label htmlFor="">Maximum Spend</label>
-          <input className="w-full rounded-[10px] border-2 outline-0 p-3 mt-2" type="number" name="maxSpend" min="1" placeholder="e.g $200" value={budgetFormValues.maxSpend} onChange={handleAddBudgetFormChange}/>
+          <input className="w-full rounded-[10px] border-2 outline-0 p-3 mt-2" type="number" name="maxSpend" min="1" placeholder="e.g $200" required value={budgetFormValues.maxSpend} onChange={handleAddBudgetFormChange}/>
           </div>
           
           <div>
             <label htmlFor="category">Theme</label>
         <ColorDropdown
-
               value={budgetFormValues.theme} 
               onChange={(newValue: ColourOption | null) => setBudgetFormValues({ ...budgetFormValues, theme: newValue?.value || "" })} 
             />

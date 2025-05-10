@@ -1,11 +1,11 @@
 import { SlClose } from "react-icons/sl";
 import { motion } from "framer-motion";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 
 // import { useContext } from "react";
 // import { Context } from "../context/Context";
 
-const PopUp = ({ label, btnLabel, children, submitFn, description, closeFn }: { description: string; label: string; btnLabel: string | ReactElement ; children: React.ReactNode; submitFn: (e: React.FormEvent<HTMLFormElement>) => void; closeFn:()=>void}) => {
+const PopUp = ({ label, btnLabel, children, submitFn, description, closeFn }: { description: string; label: string | ReactNode; btnLabel: string | ReactElement ; children: React.ReactNode; submitFn: (e: React.FormEvent<HTMLFormElement>) => void; closeFn:()=>void}) => {
     // const { setOpenPopUp } = useContext(Context);
 
   return (
