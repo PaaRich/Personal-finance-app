@@ -18,7 +18,8 @@ const Pots = () => {
     // Fetch pots data when the component mounts
     dispatch(listenToPots());
   }
-  , [dispatch]);
+    , [dispatch]);
+
   
   if (pots.isLoading) {
     return (
@@ -45,10 +46,11 @@ const Pots = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {pots.data.map((pot) => (
           <PotCard 
+            key={pot.id}
             color={pot.theme} 
             label={pot.name} 
             target={pot.target} 
-            amountSaved={pot.amountSaved || 0} 
+            amountSaved={50} 
           />
         ))}
         {/* <PotCard color="#277c78" label="Savings" target={2000} amountSaved={159}/>

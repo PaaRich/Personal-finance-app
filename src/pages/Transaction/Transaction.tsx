@@ -21,9 +21,9 @@ const Transaction = () => {
   const limit = 10;
 
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, error, data } = useSelector((state: RootState) => state.transactions);
+  const { data } = useSelector((state: RootState) => state.transactions);
 
-  console.log(isLoading, error, data);
+
 
   // Filter transactions by category
   const filteredTransactions = data.transactions?.filter((transaction) => {

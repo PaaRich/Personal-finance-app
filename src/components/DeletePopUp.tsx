@@ -1,5 +1,5 @@
 import { SlClose } from "react-icons/sl";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 
 
 const DeletePopUp = ({ label, type, setClose }: { label: string; type: string;setClose:(v:boolean)=>void }) => {
@@ -13,7 +13,7 @@ const DeletePopUp = ({ label, type, setClose }: { label: string; type: string;se
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-                className="lg:w-[560px] w-[90%] bg-white rounded-2xl p-5 lg:p-8 z-50 absolute top-[50%] left-[50%] translate-[-50%]">
+            className="lg:w-[560px] w-[90%] bg-white rounded-2xl p-5 lg:p-8 z-50 absolute top-[50%] left-[50%] translate-[-50%]">
           
           <div className="flex items-center justify-between">
               <h1 className="font-bold text-2xl lg:text-[32px]">Delete '{label}'?</h1>
@@ -25,8 +25,8 @@ const DeletePopUp = ({ label, type, setClose }: { label: string; type: string;se
           </p>
 
           <div className="flex flex-col">
-            <button className="w-full bg-[#c94736] text-white font-bold py-4 rounded-[8px] cursor-pointer hover:opacity-85 duration-150">Yes,Confirm deletion</button>
-            <button className="w-full font-bold p-3 mt-2 rounded-[8px] bg-[whitesmoke] opacity-60 duration-150 hover:opacity-100 text-[var(--deep-grey)] cursor-pointer">No,Go Back</button>
+            <button  className="w-full bg-[#c94736] text-white font-bold py-4 rounded-[8px] cursor-pointer hover:opacity-85 duration-150">Yes,Confirm deletion</button>
+            <button onClick={()=>setClose(false)} className="w-full font-bold p-3 mt-2 rounded-[8px] bg-[whitesmoke] opacity-60 duration-150 hover:opacity-100 text-[var(--deep-grey)] cursor-pointer">No,Go Back</button>
           </div>
           
           

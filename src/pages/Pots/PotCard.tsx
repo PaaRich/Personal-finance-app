@@ -5,7 +5,7 @@ import PotButton from "./PotButton";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 
-const PotCard = ({ color, label, target, amountSaved }: { color: string; label: string; target: number;amountSaved:number }) => {
+const PotCard = ({ color, label, target, amountSaved }: { color: string; label: string; target: number; amountSaved:number }) => {
     const [openDetail, setOpenDetail] = useState(false);
     const { setOpenEditPot,setOpenDelPot,setOpenAddMoney,setOpenWithdraw} = useContext(Context);
     const percent = useMemo(() => Math.floor((amountSaved/target)*100),[amountSaved,target])

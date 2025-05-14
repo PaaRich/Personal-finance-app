@@ -64,9 +64,9 @@ const BudgetCard = ({ label, amount, spent, color }: BudgetCardProp) => {
                        <Link className="inline-flex items-center text-[18px] hover:underline" to={'/transactions'}>See All<IoMdArrowDropright color="black" size={25}/></Link>
                   </div>
                   <div>
-                        <SingleTransaction profilePic={ profilePic} name="Emma Richardson" amount="75.45" transactionDate="17 Aug 2024" />
-                        <SingleTransaction profilePic={ profilePic} name="Emma Richardson" amount="75.45" transactionDate="17 Aug 2024" />
-                        <SingleTransaction profilePic={ profilePic} name="Emma Richardson" amount="75.45" transactionDate="17 Aug 2024" />
+                        <SingleTransaction profilePic={ profilePic} name="Emma Richardson" amount={75.45} transactionDate="17 Aug 2024" />
+                        <SingleTransaction profilePic={ profilePic} name="Emma Richardson" amount={75.45} transactionDate="17 Aug 2024" />
+                        <SingleTransaction profilePic={ profilePic} name="Emma Richardson" amount={75.45} transactionDate="17 Aug 2024" />
                   </div>
               </div>
           </div>

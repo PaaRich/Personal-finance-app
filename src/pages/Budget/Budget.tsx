@@ -64,17 +64,15 @@ const Budget = () => {
                     <p className="font-bold text-xl pr-2">${item.value.toFixed(2)}</p>
                     <p >of ${item.value.toFixed(2) }</p>
                 </div>
-                
-              
             </div>
           ))}
           </div>
-          
+         
         </div>
 
         {/* cards */}
         <div className="grow w-auto flex flex-col gap-y-5">
-          {budgets.data?.map((aBudget) => <BudgetCard color={ aBudget.theme} label={aBudget.category} amount={aBudget.maximum} spent={50/100*aBudget.maximum} />)}
+          {budgets.data?.map((aBudget) => <BudgetCard key={aBudget.id} color={ aBudget.theme} label={aBudget.category} amount={aBudget.maxSpend} spent={50/100*aBudget.maxSpend} />)}
           {/* <BudgetCard color="#277c78" label="Entertainment" amount={200} spent={150}/>
           <BudgetCard color="#82c9d7" label="Bills" amount={350} spent={50}/>
           <BudgetCard color="#60a5fa" label="Dinning Out" amount={250} spent={70}/>

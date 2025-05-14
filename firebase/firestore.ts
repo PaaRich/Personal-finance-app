@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc,doc,deleteDoc } from "firebase/firestore";
 import {app} from "./firebaseConfig";
 import { potItemProp,budgetItemProp } from "../types";
 import { ThunkAction } from "redux-thunk";
@@ -10,6 +10,7 @@ const db = getFirestore(app);
 
 const budgetCollectionRef = collection(db, "Budgets");
 const potsCollectionRef = collection(db, 'Pots');
+
 
 
 
@@ -35,6 +36,8 @@ const addPotFunc = (item: potItemProp): ThunkAction<void, RootState, unknown, An
     };
 };
 
+//delete pot
+
 
 // add budget
 const addBudgetFunc = (item: budgetItemProp): ThunkAction<void, RootState, unknown, AnyAction> => {
@@ -58,4 +61,25 @@ const addBudgetFunc = (item: budgetItemProp): ThunkAction<void, RootState, unkno
     };
 };
 
-export { db, budgetCollectionRef, potsCollectionRef, addPotFunc,addBudgetFunc };
+
+//delete budget
+const deleteBudgetFunc = (id: string): ThunkAction<void, RootState, unknown, AnyAction> => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return async () => {
+        try {
+            const docRef = doc(db, "Budgets", id);
+            await deleteDoc(docRef);
+            toast.success("Budget deleted successfully");
+        } catch (err:unknown) {
+            if (err instanceof Error) {
+                toast.error(err.message);
+                console.log(err.message);
+            } else {
+                toast.error("An unknown error occurred");
+                console.log("An unknown error occurred", err);
+            }
+        }
+    };
+};
+
+export { db, budgetCollectionRef, potsCollectionRef, addPotFunc,addBudgetFunc,deleteBudgetFunc };
