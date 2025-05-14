@@ -41,7 +41,7 @@ const TransactionSummary = () => {
       <div className="mt-10">
         {data.transactions?.slice(0, 5).map((transaction) => (
           <SingleTransaction
-            key={transaction.id}
+            key={transaction.amount}
             profilePic={profilePic}
             name={transaction.name}
             amount={transaction.amount}
